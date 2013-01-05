@@ -120,6 +120,8 @@
      See also applicationDidEnterBackground:.
      */
     connection->disconnect();
+    delete connection;
+    
 }
 
 - (void) displayIpAlert
