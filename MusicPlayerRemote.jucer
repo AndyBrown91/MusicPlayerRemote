@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="KFawDS" name="MusicPlayerRemote" projectType="guiapp" version="1.0.0"
+              bundleIdentifier="com.AndyB.MusicPlayerRemote" jucerVersion="3.0.0">
+  <MAINGROUP id="iknPXK" name="MusicPlayerRemote">
+    <GROUP id="{D2889388-7E47-1039-D2CF-461A3F57C651}" name="Source">
+      <FILE id="uFhwRp" name="MainComponent.cpp" compile="1" resource="0"
+            file="Source/MainComponent.cpp"/>
+      <FILE id="rz0N5l" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
+      <FILE id="Yuy6TV" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+    </GROUP>
+  </MAINGROUP>
+  <MODULES>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_audio" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="1"/>
+  </MODULES>
+  <EXPORTFORMATS>
+    <XCODE_IPHONE targetFolder="Builds/iOS" juceFolder="../Programming/juce/modules">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" iosCompatibility="default" isDebug="1" optimisation="1"
+                       targetName="MusicPlayerRemote"/>
+        <CONFIGURATION name="Release" iosCompatibility="default" isDebug="0" optimisation="2"
+                       targetName="MusicPlayerRemote"/>
+      </CONFIGURATIONS>
+    </XCODE_IPHONE>
+    <ANDROID targetFolder="Builds/Android" androidActivityClass="com.andyb.musicplayerremote.MusicPlayerRemote"
+             androidSDKPath="${user.desktop}/Programming/Java/android-sdk-macosx"
+             androidNDKPath="${user.desktop}/Programming/Java/android-ndk-r8d"
+             androidMinimumSDK="7" androidInternetNeeded="1" androidKeyStore="${user.home}/.android/debug.keystore"
+             androidKeyStorePass="android" androidKeyAlias="androiddebugkey"
+             androidKeyAliasPass="android" juceFolder="../Programming/juce/modules">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" androidArchitectures="armeabi armeabi-v7a" isDebug="1"
+                       optimisation="1" targetName="MusicPlayerRemote"/>
+        <CONFIGURATION name="Release" androidArchitectures="armeabi armeabi-v7a" isDebug="0"
+                       optimisation="2" targetName="MusicPlayerRemote"/>
+      </CONFIGURATIONS>
+    </ANDROID>
+  </EXPORTFORMATS>
+  <JUCEOPTIONS/>
+</JUCERPROJECT>
