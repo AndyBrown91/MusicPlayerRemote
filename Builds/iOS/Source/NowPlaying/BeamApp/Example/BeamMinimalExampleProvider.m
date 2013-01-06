@@ -32,7 +32,7 @@
 }
 
 -(void)musicPlayer:(BeamMusicPlayerViewController *)player artworkForTrack:(NSUInteger)trackNumber receivingBlock:(BeamMusicPlayerReceivingBlock)receivingBlock {
-    NSString* url = @"http://1.bp.blogspot.com/_Vz80r4vjf_I/TK3xU5WGx1I/AAAAAAAAAgc/nH65fgeum3k/s1600/master-of-puppets.jpg";
+    NSString* url = @"http://a3.mzstatic.com/us/r1000/045/Features/7f/50/ee/dj.zygromnm.600x600-75.jpg";
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         NSData* urlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
@@ -40,6 +40,11 @@
         UIImage* image = [UIImage imageWithData:urlData];
         receivingBlock(image,nil);
     });
+}
+
+-(void)musicPlayer:(BeamMusicPlayerViewController*)player didChangeVolume:(CGFloat)volume
+{
+    NSLog(@"Changed");
 }
 
 @end

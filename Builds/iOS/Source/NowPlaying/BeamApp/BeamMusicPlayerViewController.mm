@@ -104,6 +104,19 @@
 @synthesize backBlock, actionBlock;
 @synthesize placeholderImageDelay;
 
+/*
+ * Updates the UI according to the current scrobble state given.
+ */
+-(void)setScrobbleUI:(BOOL)scrobbleState {
+    float alpha = ( scrobbleState ? 1 : 0 );
+    [UIView animateWithDuration:0.25 animations:^{
+        self.repeatButton.alpha = 1-alpha;
+        self.shuffleButton.alpha = 1-alpha;
+        self.scrobbleHelpLabel.alpha = alpha;
+        self.scrobbleHighlightShadow.alpha = alpha;
+    }];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -120,15 +133,15 @@
     UIImage* knob = [UIImage imageNamed:@"BeamMusicPlayerController.bundle/images/VolumeKnob"];
     
     [[UISlider appearanceWhenContainedIn:[self class], nil] setThumbImage:knob forState:UIControlStateNormal];
-
+    
     [[UISlider appearance] setMinimumTrackImage:sliderBlueTrack forState:UIControlStateNormal];
     [[UISlider appearance] setMaximumTrackImage:slideWhiteTrack forState:UIControlStateNormal];
-
+    
     // The Original Toolbar is 48px high in the iPod/Music app
     CGRect toolbarRect = self.controlsToolbar.frame;
     toolbarRect.size.height = 48;
     self.controlsToolbar.frame = toolbarRect;
-
+    
     // Set UI to non-scrobble
     [self setScrobbleUI:NO];
     
@@ -137,13 +150,13 @@
     [self.artistNameLabel setShadowOffset:CGSizeMake(0, -1)];
     [self.artistNameLabel setTextColor:[UIColor lightTextColor]];
     [self.artistNameLabel setFont:[UIFont boldSystemFontOfSize:12]];
-
+    
     
     [self.albumTitleLabel setShadowColor:[UIColor blackColor]];
     [self.albumTitleLabel setShadowOffset:CGSizeMake(0, -1)];
     [self.albumTitleLabel setTextColor:[UIColor lightTextColor]];
     [self.albumTitleLabel setFont:[UIFont boldSystemFontOfSize:12]];
-
+    
     self.trackTitleLabel.textColor = [UIColor whiteColor];
     [self.trackTitleLabel setFont:[UIFont boldSystemFontOfSize:12]];
     
@@ -195,45 +208,57 @@
     self.artistNameLabel.text = [self.dataSource musicPlayer:self artistForTrack:self.currentTrack];
     self.trackTitleLabel.text = [self.dataSource musicPlayer:self titleForTrack:self.currentTrack];
     self.albumTitleLabel.text = [self.dataSource musicPlayer:self albumForTrack:self.currentTrack];
-
+    
     // set coverart to placeholder at a later point in time. Might be cancelled if datasource provides different image (see below)
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setAlbumArtToPlaceholder) object:nil];
     [self performSelector:@selector(setAlbumArtToPlaceholder) withObject:nil afterDelay:self.placeholderImageDelay];
-
+    
     // We only request the coverart if the delegate responds to it.
     if ( [self.dataSource respondsToSelector:@selector(musicPlayer:artworkForTrack:receivingBlock:)]) {
         
         // TODO: this transition needs to be overhauled before going live
-//        CATransition* transition = [CATransition animation];
-//        transition.type = kCATransitionPush;
-//        transition.subtype = self.lastDirectionChangePositive ? kCATransitionFromRight : kCATransitionFromLeft;
-//        [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-//        [[self.albumArtImageView layer] addAnimation:transition forKey:@"SlideOutandInImagek"];
-//
-//        [[self.albumArtReflection layer] addAnimation:transition forKey:@"SlideOutandInImagek"];
-
+        //        CATransition* transition = [CATransition animation];
+        //        transition.type = kCATransitionPush;
+        //        transition.subtype = self.lastDirectionChangePositive ? kCATransitionFromRight : kCATransitionFromLeft;
+        //        [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+        //        [[self.albumArtImageView layer] addAnimation:transition forKey:@"SlideOutandInImagek"];
+        //
+        //        [[self.albumArtReflection layer] addAnimation:transition forKey:@"SlideOutandInImagek"];
+        
         // Copy the current track to another variable, otherwise we would just access the current one.
         NSUInteger track = self.currentTrack;
         // Request the image. 
         [self.dataSource musicPlayer:self artworkForTrack:self.currentTrack receivingBlock:^(UIImage *image, NSError *__autoreleasing *error) {
             if ( track == self.currentTrack ){
-            
+                
                 // If there is no image given, stay with the placeholder
                 if ( image  != nil ){
-
+                    
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setAlbumArtToPlaceholder) object:nil];
                         self.albumArtImageView.image = image;
                         self.albumArtReflection.image = [self.albumArtImageView reflectedImageWithHeight:self.albumArtReflection.frame.size.height];
                     });
                 }
-            
+                
             } else {
                 NSLog(@"Discarded CoverArt for track: %d, current track already moved to %d.", track, self.currentTrack);
             }
         }];
     }
 }
+
+/*
+ * Adjusts the state of the play button to match the current state of the player
+ */
+-(void)adjustPlayButtonState {
+    if ( !self.playing ){
+        self.playButton.image = [UIImage imageNamed:@"BeamMusicPlayerController.bundle/images/play.png"];
+    } else {
+        self.playButton.image = [UIImage imageNamed:@"BeamMusicPlayerController.bundle/images/pause.png"];
+    }
+}
+
 
 -(void)play {
     if ( !self.playing ){
@@ -259,42 +284,52 @@
         }
         
         [self adjustPlayButtonState];
-
+        
     }
-}
-
--(void)next {
-    self.lastDirectionChangePositive = YES;
-    [self changeTrack:self->currentTrack+1];
-}
-
--(void)previous {
-    self.lastDirectionChangePositive = NO;
-
-    [self changeTrack:self->currentTrack-1];
 }
 
 /*
- * Called when the player finished playing the current track. 
+ * Updates the remaining and elapsed time label, as well as the progress bar's value
  */
--(void)currentTrackFinished {
-    // TODO: deactivate automatic actions via additional property
-    // overhaul this method
-    if ( self.repeatMode != MPMusicRepeatModeOne ){
-        // [self next];  - reactivate me
-
-    } else {
-        self->currentPlaybackPosition = 0;
-        [self updateSeekUI];
+-(void)updateSeekUI {
+    NSString* elapsed = [NSDateFormatter formattedDuration:(long)self.currentPlaybackPosition];
+    NSString* remaining = [NSDateFormatter formattedDuration:(self.currentTrackLength-self.currentPlaybackPosition)*-1];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.timeElapsedLabel.text =elapsed;
+        self.timeRemainingLabel.text =remaining;
+        self.progressSlider.value = self.currentPlaybackPosition;
+    });
+}
+/*
+ * Updates the Track Display ( Track 10 of 10 )
+ */
+-(void)updateTrackDisplay {
+    if ( !self.scrobbling ){
+        self.numberOfTracksLabel.text = [NSString stringWithFormat:@"Track %d of %d", self.currentTrack+1, self.numberOfTracks];
+        self.numberOfTracksLabel.hidden = !self.numberOfTracksAvailable;
     }
 }
 
--(void)playTrack:(NSUInteger)track atPosition:(CGFloat)position volume:(CGFloat)volume {
-    self.volume = volume;
-    [self changeTrack:track];
-    self->currentPlaybackPosition = position;
-    [self play];
+
+/*
+ * Adjusts the directional buttons to comply with the shouldHide-Button settings.
+ */
+-(void)adjustDirectionalButtonStates {
+    if (self.numberOfTracksAvailable && self.currentTrack+1 == self.numberOfTracks && self.shouldHideNextTrackButtonAtBoundary ){
+        self.fastForwardButton.enabled = NO;
+    } else {
+        self.fastForwardButton.enabled = YES;
+    }
+    
+    if (self.numberOfTracksAvailable && self.currentTrack == 0 && self.shouldHidePreviousTrackButtonAtBoundary ){
+        self.rewindButton.enabled = NO;
+    } else {
+        self.rewindButton.enabled = YES;
+    }
 }
+
+
+
 
 -(void)updateUI {
     // Slider
@@ -320,7 +355,7 @@
         self.numberOfTracks = [self.dataSource numberOfTracksInPlayer:self];
     else
         self.numberOfTracks = -1;
-
+    
     if (newTrack < 0 || (self.numberOfTracksAvailable && newTrack >= self.numberOfTracks)){
         shouldChange = NO;
         // If we can't next, stop the playback.
@@ -344,6 +379,42 @@
         }
     }
 }
+
+-(void)next {
+    self.lastDirectionChangePositive = YES;
+    [self changeTrack:self->currentTrack+1];
+}
+
+-(void)previous {
+    self.lastDirectionChangePositive = NO;
+    
+    [self changeTrack:self->currentTrack-1];
+}
+
+/*
+ * Called when the player finished playing the current track. 
+ */
+-(void)currentTrackFinished {
+    // TODO: deactivate automatic actions via additional property
+    // overhaul this method
+    if ( self.repeatMode != MPMusicRepeatModeOne ){
+        // [self next];  - reactivate me
+        
+    } else {
+        self->currentPlaybackPosition = 0;
+        [self updateSeekUI];
+    }
+}
+
+-(void)playTrack:(NSUInteger)track atPosition:(CGFloat)position volume:(CGFloat)volume {
+    self.volume = volume;
+    [self changeTrack:track];
+    self->currentPlaybackPosition = position;
+    [self play];
+}
+
+
+
 
 /**
  * Reloads data from the data source and updates the player.
@@ -373,28 +444,8 @@
     }
 }
 
-/*
- * Updates the remaining and elapsed time label, as well as the progress bar's value
- */
--(void)updateSeekUI {
-    NSString* elapsed = [NSDateFormatter formattedDuration:(long)self.currentPlaybackPosition];
-    NSString* remaining = [NSDateFormatter formattedDuration:(self.currentTrackLength-self.currentPlaybackPosition)*-1];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.timeElapsedLabel.text =elapsed;
-        self.timeRemainingLabel.text =remaining;
-        self.progressSlider.value = self.currentPlaybackPosition;
-    });
-}
 
-/*
- * Updates the Track Display ( Track 10 of 10 )
- */
--(void)updateTrackDisplay {
-    if ( !self.scrobbling ){
-        self.numberOfTracksLabel.text = [NSString stringWithFormat:@"Track %d of %d", self.currentTrack+1, self.numberOfTracks];
-        self.numberOfTracksLabel.hidden = !self.numberOfTracksAvailable;
-    }
-}
+
 
 -(void)updateRepeatButton {
     MPMusicRepeatMode currentMode = self->repeatMode;
@@ -483,33 +534,6 @@
 
 #pragma mark - Playback button state management
 
-/*
- * Adjusts the directional buttons to comply with the shouldHide-Button settings.
- */
--(void)adjustDirectionalButtonStates {
-    if (self.numberOfTracksAvailable && self.currentTrack+1 == self.numberOfTracks && self.shouldHideNextTrackButtonAtBoundary ){
-        self.fastForwardButton.enabled = NO;
-    } else {
-        self.fastForwardButton.enabled = YES;
-    }
-    
-    if (self.numberOfTracksAvailable && self.currentTrack == 0 && self.shouldHidePreviousTrackButtonAtBoundary ){
-        self.rewindButton.enabled = NO;
-    } else {
-        self.rewindButton.enabled = YES;
-    }
-}
-
-/*
- * Adjusts the state of the play button to match the current state of the player
- */
--(void)adjustPlayButtonState {
-    if ( !self.playing ){
-        self.playButton.image = [UIImage imageNamed:@"BeamMusicPlayerController.bundle/images/play.png"];
-    } else {
-        self.playButton.image = [UIImage imageNamed:@"BeamMusicPlayerController.bundle/images/pause.png"];
-    }
-}
 
 -(void)setShouldHideNextTrackButtonAtBoundary:(BOOL)newShouldHideNextTrackButtonAtBoundary {
     self->shouldHideNextTrackButtonAtBoundary = newShouldHideNextTrackButtonAtBoundary;
@@ -557,18 +581,7 @@
     [self updateTrackDisplay];
 }
 
-/*
- * Updates the UI according to the current scrobble state given.
- */
--(void)setScrobbleUI:(BOOL)scrobbleState {
-    float alpha = ( scrobbleState ? 1 : 0 );
-    [UIView animateWithDuration:0.25 animations:^{
-        self.repeatButton.alpha = 1-alpha;
-        self.shuffleButton.alpha = 1-alpha;
-        self.scrobbleHelpLabel.alpha = alpha;
-        self.scrobbleHighlightShadow.alpha = alpha;
-    }];
-}
+
 
 /*
  * Action triggered by the continous track progress slider

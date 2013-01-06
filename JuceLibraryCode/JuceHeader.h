@@ -16,6 +16,7 @@
 #include "AppConfig.h"
 #include "modules/juce_core/juce_core.h"
 #include "modules/juce_events/juce_events.h"
+#include "modules/juce_graphics/juce_graphics.h"
 
 
 #if ! DONT_SET_USING_JUCE_NAMESPACE

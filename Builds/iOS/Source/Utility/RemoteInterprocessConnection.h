@@ -25,8 +25,22 @@ public:
     void messageReceived (const MemoryBlock& message);
     void sendString(String incomingMessage);
     
+    String getAlbumTitle();
+    String getArtist();
+    String getSong();
+    int getLength();
+    int getPosition();
+    int getTracksInPlayer();
+    float getVolume();
+    Image getAlbumArt();
+    
 private:
-
+    String albumTitle, artist, song;
+    int tracks, length, position;
+    float volume;
+    Image albumArt;
+    
+    bool recievingArt, playState;
 };
 
 

@@ -81,6 +81,14 @@
     return self;
 }
 
+-(void)showLeftShadow:(NSNumber*)show {
+    BOOL shouldShow = show.boolValue;
+    UIColor* color = shouldShow? [UIColor clearColor] : [UIColor whiteColor];
+    self.leftShadowMask.backgroundColor = color.CGColor;
+    
+    
+}
+
 -(void)awakeFromNib {
     UIImage* fadeImage = [UIImage imageNamed:@"BeamMusicPlayerController.bundle/images/fade_overlay.png"];
 
@@ -186,14 +194,6 @@
 	[UIView commitAnimations];
 
 
-}
-
--(void)showLeftShadow:(NSNumber*)show {
-    BOOL shouldShow = show.boolValue;
-    UIColor* color = shouldShow? [UIColor clearColor] : [UIColor whiteColor];
-    self.leftShadowMask.backgroundColor = color.CGColor;
-    
-    
 }
 
 - (void) readjustLabels

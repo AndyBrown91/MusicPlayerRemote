@@ -12,6 +12,14 @@
 		7A4A2C23543B2145852B2A08 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10F10AF6489BAF9CBBF0B912 /* Foundation.framework */; };
 		9808BFCEA08A7918E9AAF416 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B284226F876B7B463FFF034 /* CoreText.framework */; };
 		A10CFD8416988A8D009E6AA0 /* BeamMinimalExampleProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A10CFD8316988A8D009E6AA0 /* BeamMinimalExampleProvider.m */; };
+		A1D3C5B51698CC6C001DD825 /* BeamMusicPlayerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A1D3C5AE1698CC6C001DD825 /* BeamMusicPlayerController.bundle */; };
+		A1D3C5B61698CC6C001DD825 /* BeamMusicPlayerViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1D3C5B21698CC6C001DD825 /* BeamMusicPlayerViewController.mm */; };
+		A1D3C5B71698CC6C001DD825 /* BeamMusicPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D3C5B31698CC6C001DD825 /* BeamMusicPlayerViewController.xib */; };
+		A1D3C5BC1698CCA6001DD825 /* NSDateFormatter+Duration.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1D3C5B91698CCA6001DD825 /* NSDateFormatter+Duration.mm */; };
+		A1D3C5BD1698CCA6001DD825 /* UIImageView+Reflection.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1D3C5BB1698CCA6001DD825 /* UIImageView+Reflection.mm */; };
+		A1D3C5C01698CCB2001DD825 /* OBSlider.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1D3C5BF1698CCB2001DD825 /* OBSlider.mm */; };
+		A1D3C5DA1698D395001DD825 /* juce_graphics in Resources */ = {isa = PBXBuildFile; fileRef = A1D3C5D91698D395001DD825 /* juce_graphics */; };
+		A1D3C5DC1698D39F001DD825 /* juce_graphics.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1D3C5DB1698D39F001DD825 /* juce_graphics.mm */; };
 		A1E9F61616946AC8001B22A8 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1E9F60F16946AC8001B22A8 /* AppDelegate.mm */; };
 		A1E9F61716946AC8001B22A8 /* FirstViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1E9F61116946AC8001B22A8 /* FirstViewController.mm */; };
 		A1E9F61916946AC8001B22A8 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1E9F61316946AC8001B22A8 /* MainStoryboard_iPhone.storyboard */; };
@@ -22,16 +30,8 @@
 		A1EA6746169473CD00AE615A /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = A1EA6744169473CD00AE615A /* settings.png */; };
 		A1EA674B169474A400AE615A /* RemoteInterprocessConnection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1EA6749169474A400AE615A /* RemoteInterprocessConnection.cpp */; };
 		A1EA674D16948A8700AE615A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A1EA674C16948A8600AE615A /* Settings.bundle */; };
-		A1F70A471697461E001078E5 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F70A421697460C001078E5 /* MediaPlayer.framework */; };
 		A1F70A481697461E001078E5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F70A431697460C001078E5 /* MessageUI.framework */; };
 		A1F70A581697464A001078E5 /* AutoScrollLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F70A4B1697464A001078E5 /* AutoScrollLabel.m */; };
-		A1F70A591697464A001078E5 /* BeamMPMusicPlayerProvider.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1F70A4D1697464A001078E5 /* BeamMPMusicPlayerProvider.mm */; };
-		A1F70A5A1697464A001078E5 /* BeamMusicPlayerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A1F70A4E1697464A001078E5 /* BeamMusicPlayerController.bundle */; };
-		A1F70A5B1697464A001078E5 /* BeamMusicPlayerViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1F70A521697464A001078E5 /* BeamMusicPlayerViewController.mm */; };
-		A1F70A5C1697464A001078E5 /* BeamMusicPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1F70A531697464A001078E5 /* BeamMusicPlayerViewController.xib */; };
-		A1F70A5D1697464A001078E5 /* NSDateFormatter+Duration.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1F70A551697464A001078E5 /* NSDateFormatter+Duration.mm */; };
-		A1F70A5E1697464A001078E5 /* UIImageView+Reflection.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1F70A571697464A001078E5 /* UIImageView+Reflection.mm */; };
-		A1F70A621697471D001078E5 /* OBSlider.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1F70A611697471D001078E5 /* OBSlider.mm */; };
 		A32A9AB61B19235BF6AA8C99 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8722597F1F488951F3432899 /* UIKit.framework */; };
 		B8357A85968830A75AEABA63 /* juce_events.mm in Sources */ = {isa = PBXBuildFile; fileRef = BDDD6FE90C0EFFADBBB42917 /* juce_events.mm */; };
 		FE6D7663D7F2981F92AEFA76 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FA6CFEF3E25AC0413B5B18E /* QuartzCore.framework */; };
@@ -186,18 +186,36 @@
 		9B865950934003150ABA19D2 /* juce_Atomic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_Atomic.h; path = ../../JuceLibraryCode/modules/juce_core/memory/juce_Atomic.h; sourceTree = SOURCE_ROOT; };
 		9E86C1BEEDFA07DEE16E43E1 /* juce_mac_Threads.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = juce_mac_Threads.mm; path = ../../JuceLibraryCode/modules/juce_core/native/juce_mac_Threads.mm; sourceTree = SOURCE_ROOT; };
 		9FC8325E7939476EFCA85D3B /* juce_ReadWriteLock.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_ReadWriteLock.cpp; path = ../../JuceLibraryCode/modules/juce_core/threads/juce_ReadWriteLock.cpp; sourceTree = SOURCE_ROOT; };
-		A10CFD8216988A8D009E6AA0 /* BeamMinimalExampleProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeamMinimalExampleProvider.h; path = Source/BeamApp/Example/BeamMinimalExampleProvider.h; sourceTree = "<group>"; };
-		A10CFD8316988A8D009E6AA0 /* BeamMinimalExampleProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeamMinimalExampleProvider.m; path = Source/BeamApp/Example/BeamMinimalExampleProvider.m; sourceTree = "<group>"; };
+		A10CFD8216988A8D009E6AA0 /* BeamMinimalExampleProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeamMinimalExampleProvider.h; path = BeamApp/Example/BeamMinimalExampleProvider.h; sourceTree = "<group>"; };
+		A10CFD8316988A8D009E6AA0 /* BeamMinimalExampleProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeamMinimalExampleProvider.m; path = BeamApp/Example/BeamMinimalExampleProvider.m; sourceTree = "<group>"; };
 		A140817F461888043B57234C /* juce_ZipFile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_ZipFile.cpp; path = ../../JuceLibraryCode/modules/juce_core/zip/juce_ZipFile.cpp; sourceTree = SOURCE_ROOT; };
 		A1A41884FEA350CADB167FC8 /* juce_TemporaryFile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_TemporaryFile.cpp; path = ../../JuceLibraryCode/modules/juce_core/files/juce_TemporaryFile.cpp; sourceTree = SOURCE_ROOT; };
+		A1D3C5AC1698CC6C001DD825 /* BeamMPMusicPlayerProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeamMPMusicPlayerProvider.h; path = BeamApp/BeamMPMusicPlayerProvider.h; sourceTree = "<group>"; };
+		A1D3C5AD1698CC6C001DD825 /* BeamMPMusicPlayerProvider.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BeamMPMusicPlayerProvider.mm; path = BeamApp/BeamMPMusicPlayerProvider.mm; sourceTree = "<group>"; };
+		A1D3C5AE1698CC6C001DD825 /* BeamMusicPlayerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = BeamMusicPlayerController.bundle; path = BeamApp/BeamMusicPlayerController.bundle; sourceTree = "<group>"; };
+		A1D3C5AF1698CC6C001DD825 /* BeamMusicPlayerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeamMusicPlayerDataSource.h; path = BeamApp/BeamMusicPlayerDataSource.h; sourceTree = "<group>"; };
+		A1D3C5B01698CC6C001DD825 /* BeamMusicPlayerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeamMusicPlayerDelegate.h; path = BeamApp/BeamMusicPlayerDelegate.h; sourceTree = "<group>"; };
+		A1D3C5B11698CC6C001DD825 /* BeamMusicPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeamMusicPlayerViewController.h; path = BeamApp/BeamMusicPlayerViewController.h; sourceTree = "<group>"; };
+		A1D3C5B21698CC6C001DD825 /* BeamMusicPlayerViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BeamMusicPlayerViewController.mm; path = BeamApp/BeamMusicPlayerViewController.mm; sourceTree = "<group>"; };
+		A1D3C5B31698CC6C001DD825 /* BeamMusicPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BeamMusicPlayerViewController.xib; path = BeamApp/BeamMusicPlayerViewController.xib; sourceTree = "<group>"; };
+		A1D3C5B81698CCA6001DD825 /* NSDateFormatter+Duration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDateFormatter+Duration.h"; path = "BeamApp/Categories/NSDateFormatter+Duration.h"; sourceTree = "<group>"; };
+		A1D3C5B91698CCA6001DD825 /* NSDateFormatter+Duration.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "NSDateFormatter+Duration.mm"; path = "BeamApp/Categories/NSDateFormatter+Duration.mm"; sourceTree = "<group>"; };
+		A1D3C5BA1698CCA6001DD825 /* UIImageView+Reflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+Reflection.h"; path = "BeamApp/Categories/UIImageView+Reflection.h"; sourceTree = "<group>"; };
+		A1D3C5BB1698CCA6001DD825 /* UIImageView+Reflection.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "UIImageView+Reflection.mm"; path = "BeamApp/Categories/UIImageView+Reflection.mm"; sourceTree = "<group>"; };
+		A1D3C5BE1698CCB2001DD825 /* OBSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OBSlider.h; path = BeamApp/OBSlider/OBSlider.h; sourceTree = "<group>"; };
+		A1D3C5BF1698CCB2001DD825 /* OBSlider.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = OBSlider.mm; path = BeamApp/OBSlider/OBSlider.mm; sourceTree = "<group>"; };
+		A1D3C5C11698CCD4001DD825 /* RemoteProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteProvider.h; sourceTree = "<group>"; };
+		A1D3C5C21698CCD4001DD825 /* RemoteProvider.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RemoteProvider.mm; sourceTree = "<group>"; };
+		A1D3C5D91698D395001DD825 /* juce_graphics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_graphics; path = ../../JuceLibraryCode/modules/juce_graphics; sourceTree = "<group>"; };
+		A1D3C5DB1698D39F001DD825 /* juce_graphics.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = juce_graphics.mm; path = ../../JuceLibraryCode/modules/juce_graphics/juce_graphics.mm; sourceTree = "<group>"; };
 		A1E9F60E16946AC8001B22A8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Source/AppDelegate.h; sourceTree = "<group>"; };
 		A1E9F60F16946AC8001B22A8 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = Source/AppDelegate.mm; sourceTree = "<group>"; };
 		A1E9F61016946AC8001B22A8 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstViewController.h; path = Source/FirstViewController.h; sourceTree = "<group>"; };
 		A1E9F61116946AC8001B22A8 /* FirstViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FirstViewController.mm; path = Source/FirstViewController.mm; sourceTree = "<group>"; };
 		A1E9F61216946AC8001B22A8 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard_iPad.storyboard; path = Source/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		A1E9F61316946AC8001B22A8 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard_iPhone.storyboard; path = Source/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		A1E9F61416946AC8001B22A8 /* NowPlayingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NowPlayingViewController.h; path = Source/NowPlayingViewController.h; sourceTree = "<group>"; };
-		A1E9F61516946AC8001B22A8 /* NowPlayingViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NowPlayingViewController.mm; path = Source/NowPlayingViewController.mm; sourceTree = "<group>"; };
+		A1E9F61416946AC8001B22A8 /* NowPlayingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingViewController.h; sourceTree = "<group>"; };
+		A1E9F61516946AC8001B22A8 /* NowPlayingViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NowPlayingViewController.mm; sourceTree = "<group>"; };
 		A1E9F61B16946AE0001B22A8 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = Source/InfoPlist.strings; sourceTree = "<group>"; };
 		A1E9F61C16946AE0001B22A8 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = Source/main.mm; sourceTree = "<group>"; };
 		A1E9F61D16946AE0001B22A8 /* MusicPlayerRemote-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MusicPlayerRemote-Info.plist"; path = "Source/MusicPlayerRemote-Info.plist"; sourceTree = "<group>"; };
@@ -209,24 +227,9 @@
 		A1EA6749169474A400AE615A /* RemoteInterprocessConnection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RemoteInterprocessConnection.cpp; path = Source/Utility/RemoteInterprocessConnection.cpp; sourceTree = "<group>"; };
 		A1EA674A169474A400AE615A /* RemoteInterprocessConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RemoteInterprocessConnection.h; path = Source/Utility/RemoteInterprocessConnection.h; sourceTree = "<group>"; };
 		A1EA674C16948A8600AE615A /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = Source/Settings.bundle; sourceTree = "<group>"; };
-		A1F70A421697460C001078E5 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		A1F70A431697460C001078E5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		A1F70A4A1697464A001078E5 /* AutoScrollLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AutoScrollLabel.h; path = Source/BeamApp/AutoScrollLabel.h; sourceTree = "<group>"; };
-		A1F70A4B1697464A001078E5 /* AutoScrollLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AutoScrollLabel.m; path = Source/BeamApp/AutoScrollLabel.m; sourceTree = "<group>"; };
-		A1F70A4C1697464A001078E5 /* BeamMPMusicPlayerProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeamMPMusicPlayerProvider.h; path = Source/BeamApp/BeamMPMusicPlayerProvider.h; sourceTree = "<group>"; };
-		A1F70A4D1697464A001078E5 /* BeamMPMusicPlayerProvider.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BeamMPMusicPlayerProvider.mm; path = Source/BeamApp/BeamMPMusicPlayerProvider.mm; sourceTree = "<group>"; };
-		A1F70A4E1697464A001078E5 /* BeamMusicPlayerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = BeamMusicPlayerController.bundle; path = Source/BeamApp/BeamMusicPlayerController.bundle; sourceTree = "<group>"; };
-		A1F70A4F1697464A001078E5 /* BeamMusicPlayerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeamMusicPlayerDataSource.h; path = Source/BeamApp/BeamMusicPlayerDataSource.h; sourceTree = "<group>"; };
-		A1F70A501697464A001078E5 /* BeamMusicPlayerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeamMusicPlayerDelegate.h; path = Source/BeamApp/BeamMusicPlayerDelegate.h; sourceTree = "<group>"; };
-		A1F70A511697464A001078E5 /* BeamMusicPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeamMusicPlayerViewController.h; path = Source/BeamApp/BeamMusicPlayerViewController.h; sourceTree = "<group>"; };
-		A1F70A521697464A001078E5 /* BeamMusicPlayerViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BeamMusicPlayerViewController.mm; path = Source/BeamApp/BeamMusicPlayerViewController.mm; sourceTree = "<group>"; };
-		A1F70A531697464A001078E5 /* BeamMusicPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BeamMusicPlayerViewController.xib; path = Source/BeamApp/BeamMusicPlayerViewController.xib; sourceTree = "<group>"; };
-		A1F70A541697464A001078E5 /* NSDateFormatter+Duration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDateFormatter+Duration.h"; path = "Source/BeamApp/NSDateFormatter+Duration.h"; sourceTree = "<group>"; };
-		A1F70A551697464A001078E5 /* NSDateFormatter+Duration.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "NSDateFormatter+Duration.mm"; path = "Source/BeamApp/NSDateFormatter+Duration.mm"; sourceTree = "<group>"; };
-		A1F70A561697464A001078E5 /* UIImageView+Reflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+Reflection.h"; path = "Source/BeamApp/UIImageView+Reflection.h"; sourceTree = "<group>"; };
-		A1F70A571697464A001078E5 /* UIImageView+Reflection.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "UIImageView+Reflection.mm"; path = "Source/BeamApp/UIImageView+Reflection.mm"; sourceTree = "<group>"; };
-		A1F70A601697471D001078E5 /* OBSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OBSlider.h; path = Source/BeamApp/OBSlider/OBSlider.h; sourceTree = "<group>"; };
-		A1F70A611697471D001078E5 /* OBSlider.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = OBSlider.mm; path = Source/BeamApp/OBSlider/OBSlider.mm; sourceTree = "<group>"; };
+		A1F70A4A1697464A001078E5 /* AutoScrollLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AutoScrollLabel.h; path = "BeamApp/3rd Party/AutoScrollLabel.h"; sourceTree = "<group>"; };
+		A1F70A4B1697464A001078E5 /* AutoScrollLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AutoScrollLabel.m; path = "BeamApp/3rd Party/AutoScrollLabel.m"; sourceTree = "<group>"; };
 		A4F30C3250D680E0576253EE /* juce_PerformanceCounter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_PerformanceCounter.h; path = ../../JuceLibraryCode/modules/juce_core/time/juce_PerformanceCounter.h; sourceTree = SOURCE_ROOT; };
 		A76BD47A1C902006401D7619 /* juce_MemoryMappedFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_MemoryMappedFile.h; path = ../../JuceLibraryCode/modules/juce_core/files/juce_MemoryMappedFile.h; sourceTree = SOURCE_ROOT; };
 		A7B90D7BADE770ADEF06470A /* juce_File.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_File.h; path = ../../JuceLibraryCode/modules/juce_core/files/juce_File.h; sourceTree = SOURCE_ROOT; };
@@ -315,7 +318,6 @@
 				7A4A2C23543B2145852B2A08 /* Foundation.framework in Frameworks */,
 				FE6D7663D7F2981F92AEFA76 /* QuartzCore.framework in Frameworks */,
 				A32A9AB61B19235BF6AA8C99 /* UIKit.framework in Frameworks */,
-				A1F70A471697461E001078E5 /* MediaPlayer.framework in Frameworks */,
 				A1F70A481697461E001078E5 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,6 +378,7 @@
 				098D31B57971B01E7D878D13 /* AppConfig.h */,
 				80ECABA9DF3FA63768CB48F2 /* juce_core.mm */,
 				BDDD6FE90C0EFFADBBB42917 /* juce_events.mm */,
+				A1D3C5DB1698D39F001DD825 /* juce_graphics.mm */,
 				C57FD010D7232E9FEF872F7B /* JuceHeader.h */,
 			);
 			name = "Juce Library Code";
@@ -544,6 +547,19 @@
 			name = Example;
 			sourceTree = "<group>";
 		};
+		A1D3C5A51698CBB2001DD825 /* NowPlaying */ = {
+			isa = PBXGroup;
+			children = (
+				A1D3C5C11698CCD4001DD825 /* RemoteProvider.h */,
+				A1D3C5C21698CCD4001DD825 /* RemoteProvider.mm */,
+				A1E9F61416946AC8001B22A8 /* NowPlayingViewController.h */,
+				A1E9F61516946AC8001B22A8 /* NowPlayingViewController.mm */,
+				A1F70A4916974625001078E5 /* BeamApp */,
+			);
+			name = NowPlaying;
+			path = Source/NowPlaying;
+			sourceTree = "<group>";
+		};
 		A1E9F5DD16946241001B22A8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -587,18 +603,18 @@
 		A1F70A4916974625001078E5 /* BeamApp */ = {
 			isa = PBXGroup;
 			children = (
+				A1D3C5AC1698CC6C001DD825 /* BeamMPMusicPlayerProvider.h */,
+				A1D3C5AD1698CC6C001DD825 /* BeamMPMusicPlayerProvider.mm */,
+				A1D3C5AE1698CC6C001DD825 /* BeamMusicPlayerController.bundle */,
+				A1D3C5AF1698CC6C001DD825 /* BeamMusicPlayerDataSource.h */,
+				A1D3C5B01698CC6C001DD825 /* BeamMusicPlayerDelegate.h */,
+				A1D3C5B11698CC6C001DD825 /* BeamMusicPlayerViewController.h */,
+				A1D3C5B21698CC6C001DD825 /* BeamMusicPlayerViewController.mm */,
+				A1D3C5B31698CC6C001DD825 /* BeamMusicPlayerViewController.xib */,
 				A10CFD7D169888A1009E6AA0 /* Example */,
 				A1F70A6716974A6F001078E5 /* 3rd Party */,
 				A1F70A6816974ABA001078E5 /* Categories */,
 				A1F70A5F16974707001078E5 /* OBSlider */,
-				A1F70A4C1697464A001078E5 /* BeamMPMusicPlayerProvider.h */,
-				A1F70A4D1697464A001078E5 /* BeamMPMusicPlayerProvider.mm */,
-				A1F70A4E1697464A001078E5 /* BeamMusicPlayerController.bundle */,
-				A1F70A4F1697464A001078E5 /* BeamMusicPlayerDataSource.h */,
-				A1F70A501697464A001078E5 /* BeamMusicPlayerDelegate.h */,
-				A1F70A511697464A001078E5 /* BeamMusicPlayerViewController.h */,
-				A1F70A521697464A001078E5 /* BeamMusicPlayerViewController.mm */,
-				A1F70A531697464A001078E5 /* BeamMusicPlayerViewController.xib */,
 			);
 			name = BeamApp;
 			sourceTree = "<group>";
@@ -606,8 +622,8 @@
 		A1F70A5F16974707001078E5 /* OBSlider */ = {
 			isa = PBXGroup;
 			children = (
-				A1F70A601697471D001078E5 /* OBSlider.h */,
-				A1F70A611697471D001078E5 /* OBSlider.mm */,
+				A1D3C5BE1698CCB2001DD825 /* OBSlider.h */,
+				A1D3C5BF1698CCB2001DD825 /* OBSlider.mm */,
 			);
 			name = OBSlider;
 			sourceTree = "<group>";
@@ -624,10 +640,10 @@
 		A1F70A6816974ABA001078E5 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				A1F70A541697464A001078E5 /* NSDateFormatter+Duration.h */,
-				A1F70A551697464A001078E5 /* NSDateFormatter+Duration.mm */,
-				A1F70A561697464A001078E5 /* UIImageView+Reflection.h */,
-				A1F70A571697464A001078E5 /* UIImageView+Reflection.mm */,
+				A1D3C5B81698CCA6001DD825 /* NSDateFormatter+Duration.h */,
+				A1D3C5B91698CCA6001DD825 /* NSDateFormatter+Duration.mm */,
+				A1D3C5BA1698CCA6001DD825 /* UIImageView+Reflection.h */,
+				A1D3C5BB1698CCA6001DD825 /* UIImageView+Reflection.mm */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -761,7 +777,7 @@
 		CC060ABE4329796F633E8EA7 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				A1F70A4916974625001078E5 /* BeamApp */,
+				A1D3C5A51698CBB2001DD825 /* NowPlaying */,
 				A1EA67481694748F00AE615A /* Utility */,
 				A1E9F62216946B03001B22A8 /* Images */,
 				A1E9F60E16946AC8001B22A8 /* AppDelegate.h */,
@@ -770,8 +786,6 @@
 				A1E9F61116946AC8001B22A8 /* FirstViewController.mm */,
 				A1E9F61216946AC8001B22A8 /* MainStoryboard_iPad.storyboard */,
 				A1E9F61316946AC8001B22A8 /* MainStoryboard_iPhone.storyboard */,
-				A1E9F61416946AC8001B22A8 /* NowPlayingViewController.h */,
-				A1E9F61516946AC8001B22A8 /* NowPlayingViewController.mm */,
 				A1E9F5DD16946241001B22A8 /* Supporting Files */,
 			);
 			name = Source;
@@ -858,6 +872,7 @@
 		E0DECE01FC1F0FDC87453F11 /* Juce Modules */ = {
 			isa = PBXGroup;
 			children = (
+				A1D3C5D91698D395001DD825 /* juce_graphics */,
 				C796E6132D794516EA1E5469 /* juce_core */,
 				9066E9F8109769EA45AD16E5 /* juce_events */,
 			);
@@ -879,7 +894,6 @@
 		E5FDDB0CC33AA165777BBD40 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A1F70A421697460C001078E5 /* MediaPlayer.framework */,
 				A1F70A431697460C001078E5 /* MessageUI.framework */,
 				AD135DF271F037991A22CB1D /* CoreGraphics.framework */,
 				8B284226F876B7B463FFF034 /* CoreText.framework */,
@@ -971,8 +985,9 @@
 				A1E9F631169470B6001B22A8 /* first.png in Resources */,
 				A1EA6746169473CD00AE615A /* settings.png in Resources */,
 				A1EA674D16948A8700AE615A /* Settings.bundle in Resources */,
-				A1F70A5A1697464A001078E5 /* BeamMusicPlayerController.bundle in Resources */,
-				A1F70A5C1697464A001078E5 /* BeamMusicPlayerViewController.xib in Resources */,
+				A1D3C5B51698CC6C001DD825 /* BeamMusicPlayerController.bundle in Resources */,
+				A1D3C5B71698CC6C001DD825 /* BeamMusicPlayerViewController.xib in Resources */,
+				A1D3C5DA1698D395001DD825 /* juce_graphics in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -991,12 +1006,12 @@
 				A1E9F62016946AE0001B22A8 /* main.mm in Sources */,
 				A1EA674B169474A400AE615A /* RemoteInterprocessConnection.cpp in Sources */,
 				A1F70A581697464A001078E5 /* AutoScrollLabel.m in Sources */,
-				A1F70A591697464A001078E5 /* BeamMPMusicPlayerProvider.mm in Sources */,
-				A1F70A5B1697464A001078E5 /* BeamMusicPlayerViewController.mm in Sources */,
-				A1F70A5D1697464A001078E5 /* NSDateFormatter+Duration.mm in Sources */,
-				A1F70A5E1697464A001078E5 /* UIImageView+Reflection.mm in Sources */,
-				A1F70A621697471D001078E5 /* OBSlider.mm in Sources */,
 				A10CFD8416988A8D009E6AA0 /* BeamMinimalExampleProvider.m in Sources */,
+				A1D3C5B61698CC6C001DD825 /* BeamMusicPlayerViewController.mm in Sources */,
+				A1D3C5BC1698CCA6001DD825 /* NSDateFormatter+Duration.mm in Sources */,
+				A1D3C5BD1698CCA6001DD825 /* UIImageView+Reflection.mm in Sources */,
+				A1D3C5C01698CCB2001DD825 /* OBSlider.mm in Sources */,
+				A1D3C5DC1698D39F001DD825 /* juce_graphics.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
