@@ -10,9 +10,9 @@
 
 @implementation RemoteProvider
 
-//@synthesize musicPlayer;
+@synthesize musicPlayer;
 @synthesize controller;
-@synthesize mediaItems;
+//@synthesize mediaItems;
 
 -(id)init {
     self = [super init];
@@ -42,15 +42,16 @@
 }
 
 -(NSString*)musicPlayer:(BeamMusicPlayerViewController *)player titleForTrack:(NSUInteger)trackNumber {
-    return @"If the Foo sings bar, it makes me wanna baz.";
+    NSString* song = (NSString*)(connection->getSong().toCFString());
+    return song;
 }
 
 -(CGFloat)musicPlayer:(BeamMusicPlayerViewController *)player lengthForTrack:(NSUInteger)trackNumber {
-    return 125;
+    return connection->getLength();
 }
 
 -(NSInteger)numberOfTracksInPlayer:(BeamMusicPlayerViewController *)player {
-    return 3;
+    return connection->getTracksInPlayer();
 }
 
 -(void)musicPlayer:(BeamMusicPlayerViewController *)player artworkForTrack:(NSUInteger)trackNumber receivingBlock:(BeamMusicPlayerReceivingBlock)receivingBlock {
@@ -93,7 +94,7 @@
 
 -(void)musicPlayer:(BeamMusicPlayerViewController*)player didSeekToPosition:(CGFloat)position
 {
-    
+    NSLog(@"Seek changed");
 }
 
 -(BOOL)musicPlayer:(BeamMusicPlayerViewController*)player shouldChangeTrack:(NSUInteger)track

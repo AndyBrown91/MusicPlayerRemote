@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 __MyCompanyName__. All rights reserved.
 
 #import <Foundation/Foundation.h>
-
+#import <MediaPlayer/MediaPlayer.h>
 #import "BeamMusicPlayerViewController.h"
 #import "RemoteInterprocessConnection.h"
 
@@ -14,8 +14,8 @@
 {
     RemoteInterprocessConnection* connection;
 }
-//@property (nonatomic,strong) MPMusicPlayerController* musicPlayer; // An instance of an ipod music player
+@property (nonatomic,strong) MPMusicPlayerController* musicPlayer; // An instance of an ipod music player
 @property (nonatomic,strong) BeamMusicPlayerViewController* controller; // the BeamMusicPlayerViewController
-@property (nonatomic,copy) NSArray *mediaItems;
+//@property (nonatomic,copy) NSArray *mediaItems;
 
 @end

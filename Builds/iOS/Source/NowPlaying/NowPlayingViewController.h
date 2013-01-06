@@ -11,6 +11,7 @@
 #import "BeamMusicPlayerViewController.h"
 #import "BeamMPMusicPlayerProvider.h"
 #import "BeamMinimalExampleProvider.h"
+#import "RemoteProvider.h"
 
 @class BeamMusicPlayerViewController;
 

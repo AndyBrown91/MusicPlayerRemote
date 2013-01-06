@@ -8,7 +8,7 @@
 
 #include "RemoteInterprocessConnection.h"
 
-RemoteInterprocessConnection::RemoteInterprocessConnection () : InterprocessConnection(true)
+RemoteInterprocessConnection::RemoteInterprocessConnection () : InterprocessConnection(false)
 {
     //remoteNumConnections++;
 }
@@ -54,8 +54,8 @@ void RemoteInterprocessConnection::messageReceived (const MemoryBlock& message)
         else if (stringMessage.startsWith("Length")) {
             length = (stringMessage.fromFirstOccurrenceOf("Length: ", false, true)).getIntValue();
         }
-        else if (stringMessage.startsWith("Tracks")) {
-            tracks = (stringMessage.fromFirstOccurrenceOf("Tracks: ", false, true)).getIntValue();
+        else if (stringMessage.startsWith("TracksTotal")) {
+            tracksTotal = (stringMessage.fromFirstOccurrenceOf("TracksTotal: ", false, true)).getIntValue();
         }
         else if (stringMessage.startsWith("Position")) {
             position = (stringMessage.fromFirstOccurrenceOf("Position: ", false, true)).getIntValue();
@@ -70,8 +70,9 @@ void RemoteInterprocessConnection::messageReceived (const MemoryBlock& message)
         {
             recievingArt = true;
         }
+            
     }
-    DBG("Message received");    
+    DBG("Message received " + message.toString());
 }
 
 void RemoteInterprocessConnection::sendString(String incomingMessage)
@@ -100,9 +101,14 @@ int RemoteInterprocessConnection::getPosition()
 {
     return position;
 }
+void RemoteInterprocessConnection::setPosition(int incomingPosition)
+{
+    position = incomingPosition;
+    sendString("Position: " + position);
+}
 int RemoteInterprocessConnection::getTracksInPlayer()
 {
-    return tracks;
+    return tracksTotal;
 }
 float RemoteInterprocessConnection::getVolume()
 {

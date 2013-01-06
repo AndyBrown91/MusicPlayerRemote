@@ -12,6 +12,7 @@
 @implementation BeamMinimalExampleProvider
 
 -(NSString*)musicPlayer:(BeamMusicPlayerViewController *)player albumForTrack:(NSUInteger)trackNumber {
+    NSLog(@"Album requested");
     return @"Example Album that is very long and therefore needs scrolling";
 }
 

@@ -50,11 +50,12 @@
     [self.window makeKeyAndVisible];
     
 #if TARGET_IPHONE_SIMULATOR
-    self.exampleProvider = [BeamMinimalExampleProvider new];
+    self.exampleProvider = [RemoteProvider new];
     
     self.viewController.dataSource = self.exampleProvider;
     self.viewController.delegate = self.exampleProvider;
     [self.viewController reloadData];
+    
 #else
     BeamMPMusicPlayerProvider *mpMusicPlayerProvider = [BeamMPMusicPlayerProvider new];
     mpMusicPlayerProvider.controller = self.viewController;
@@ -76,8 +77,6 @@
     self.viewController.shouldHidePreviousTrackButtonAtBoundary = YES;
     
     [self.viewController play];
-//    return YES;
-
 }
 
 - (void)viewDidUnload

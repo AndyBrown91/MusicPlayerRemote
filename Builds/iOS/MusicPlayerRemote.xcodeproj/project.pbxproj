@@ -12,6 +12,8 @@
 		7A4A2C23543B2145852B2A08 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10F10AF6489BAF9CBBF0B912 /* Foundation.framework */; };
 		9808BFCEA08A7918E9AAF416 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B284226F876B7B463FFF034 /* CoreText.framework */; };
 		A10CFD8416988A8D009E6AA0 /* BeamMinimalExampleProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A10CFD8316988A8D009E6AA0 /* BeamMinimalExampleProvider.m */; };
+		A1C9765B169A0BDA00A70F0C /* RemoteProvider.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1D3C5C21698CCD4001DD825 /* RemoteProvider.mm */; };
+		A1C9765F169A0C2700A70F0C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1C9765D169A0C1F00A70F0C /* MediaPlayer.framework */; };
 		A1D3C5B51698CC6C001DD825 /* BeamMusicPlayerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A1D3C5AE1698CC6C001DD825 /* BeamMusicPlayerController.bundle */; };
 		A1D3C5B61698CC6C001DD825 /* BeamMusicPlayerViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1D3C5B21698CC6C001DD825 /* BeamMusicPlayerViewController.mm */; };
 		A1D3C5B71698CC6C001DD825 /* BeamMusicPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D3C5B31698CC6C001DD825 /* BeamMusicPlayerViewController.xib */; };
@@ -190,6 +192,7 @@
 		A10CFD8316988A8D009E6AA0 /* BeamMinimalExampleProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeamMinimalExampleProvider.m; path = BeamApp/Example/BeamMinimalExampleProvider.m; sourceTree = "<group>"; };
 		A140817F461888043B57234C /* juce_ZipFile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_ZipFile.cpp; path = ../../JuceLibraryCode/modules/juce_core/zip/juce_ZipFile.cpp; sourceTree = SOURCE_ROOT; };
 		A1A41884FEA350CADB167FC8 /* juce_TemporaryFile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_TemporaryFile.cpp; path = ../../JuceLibraryCode/modules/juce_core/files/juce_TemporaryFile.cpp; sourceTree = SOURCE_ROOT; };
+		A1C9765D169A0C1F00A70F0C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		A1D3C5AC1698CC6C001DD825 /* BeamMPMusicPlayerProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeamMPMusicPlayerProvider.h; path = BeamApp/BeamMPMusicPlayerProvider.h; sourceTree = "<group>"; };
 		A1D3C5AD1698CC6C001DD825 /* BeamMPMusicPlayerProvider.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BeamMPMusicPlayerProvider.mm; path = BeamApp/BeamMPMusicPlayerProvider.mm; sourceTree = "<group>"; };
 		A1D3C5AE1698CC6C001DD825 /* BeamMusicPlayerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = BeamMusicPlayerController.bundle; path = BeamApp/BeamMusicPlayerController.bundle; sourceTree = "<group>"; };
@@ -319,6 +322,7 @@
 				FE6D7663D7F2981F92AEFA76 /* QuartzCore.framework in Frameworks */,
 				A32A9AB61B19235BF6AA8C99 /* UIKit.framework in Frameworks */,
 				A1F70A481697461E001078E5 /* MessageUI.framework in Frameworks */,
+				A1C9765F169A0C2700A70F0C /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -894,6 +898,7 @@
 		E5FDDB0CC33AA165777BBD40 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1C9765D169A0C1F00A70F0C /* MediaPlayer.framework */,
 				A1F70A431697460C001078E5 /* MessageUI.framework */,
 				AD135DF271F037991A22CB1D /* CoreGraphics.framework */,
 				8B284226F876B7B463FFF034 /* CoreText.framework */,
@@ -1012,6 +1017,7 @@
 				A1D3C5BD1698CCA6001DD825 /* UIImageView+Reflection.mm in Sources */,
 				A1D3C5C01698CCB2001DD825 /* OBSlider.mm in Sources */,
 				A1D3C5DC1698D39F001DD825 /* juce_graphics.mm in Sources */,
+				A1C9765B169A0BDA00A70F0C /* RemoteProvider.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
