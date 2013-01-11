@@ -192,7 +192,8 @@
 #pragma mark - Playback Management
 
 -(BOOL)numberOfTracksAvailable {
-    return self.numberOfTracks >= 0;
+    //return self.numberOfTracks >= 0;
+    return [self.dataSource numberOfTracksInPlayer:self];
 }
 
 -(void)setAlbumArtToPlaceholder {
@@ -305,7 +306,7 @@
  */
 -(void)updateTrackDisplay {
     if ( !self.scrobbling ){
-        self.numberOfTracksLabel.text = [NSString stringWithFormat:@"Track %d of %d", self.currentTrack+1, self.numberOfTracks];
+        self.numberOfTracksLabel.text = [NSString stringWithFormat:@"Track %d of %d", self.currentTrack, self.numberOfTracks];
         self.numberOfTracksLabel.hidden = !self.numberOfTracksAvailable;
     }
 }

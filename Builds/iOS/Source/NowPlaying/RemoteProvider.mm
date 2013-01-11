@@ -47,15 +47,19 @@
 }
 
 -(CGFloat)musicPlayer:(BeamMusicPlayerViewController *)player lengthForTrack:(NSUInteger)trackNumber {
-    return connection->getLength();
+    return (CGFloat)(connection->getLength());
 }
 
 -(NSInteger)numberOfTracksInPlayer:(BeamMusicPlayerViewController *)player {
-    return connection->getTracksInPlayer();
+    return (NSInteger)(connection->getTracksInPlayer());
+}
+
+-(NSInteger)currentNumberOfTrackInPlayer:(BeamMusicPlayerViewController *)player {
+    return (NSInteger)(connection->getTracksInPlayer());
 }
 
 -(void)musicPlayer:(BeamMusicPlayerViewController *)player artworkForTrack:(NSUInteger)trackNumber receivingBlock:(BeamMusicPlayerReceivingBlock)receivingBlock {
-    NSString* url = @"http://a3.mzstatic.com/us/r1000/045/Features/7f/50/ee/dj.zygromnm.600x600-75.jpg";
+    NSString* url = @"http://i107.photobucket.com/albums/m290/Barry_026/adebisishankEPcover.jpg";
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         NSData* urlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];

@@ -57,6 +57,9 @@ void RemoteInterprocessConnection::messageReceived (const MemoryBlock& message)
         else if (stringMessage.startsWith("TracksTotal")) {
             tracksTotal = (stringMessage.fromFirstOccurrenceOf("TracksTotal: ", false, true)).getIntValue();
         }
+        else if (stringMessage.startsWith("TrackNum")) {
+            trackNum = (stringMessage.fromFirstOccurrenceOf("TrackNum: ", false, true)).getIntValue();
+        }
         else if (stringMessage.startsWith("Position")) {
             position = (stringMessage.fromFirstOccurrenceOf("Position: ", false, true)).getIntValue();
         }
@@ -109,6 +112,10 @@ void RemoteInterprocessConnection::setPosition(int incomingPosition)
 int RemoteInterprocessConnection::getTracksInPlayer()
 {
     return tracksTotal;
+}
+int RemoteInterprocessConnection::getTrackNum()
+{
+    return trackNum;
 }
 float RemoteInterprocessConnection::getVolume()
 {

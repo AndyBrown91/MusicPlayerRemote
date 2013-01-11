@@ -34,12 +34,14 @@ public:
     void setPosition(int incomingPosition);
     
     int getTracksInPlayer();
+    int getTrackNum();
+    
     float getVolume();
     Image getAlbumArt();
     
 private:
     String albumTitle, artist, song;
-    int tracksTotal, length, position;
+    int tracksTotal, trackNum, length, position;
     float volume;
     Image albumArt;
     

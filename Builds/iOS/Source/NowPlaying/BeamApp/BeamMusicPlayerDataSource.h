@@ -67,6 +67,14 @@ typedef void(^BeamMusicPlayerReceivingBlock)(UIImage* image, NSError** error);
 -(NSInteger)numberOfTracksInPlayer:(BeamMusicPlayerViewController*)player;
 
 /**
+ * Returns the position of currently playing track in library
+ * Added by Andy Brown
+ * @param player the BeamMusicPlayerViewController that is making this request.
+ * @return number of currently playing track
+ */
+-(NSInteger)currentNumberOfTrackInPlayer:(BeamMusicPlayerViewController*)player;
+
+/**
  * Returns the artwork for a given track.
  *
  * The artwork is returned using a receiving block ( BeamMusicPlayerReceivingBlock ) that takes an UIImage and an optional error. If you supply nil as an image, a placeholder will be shown.
