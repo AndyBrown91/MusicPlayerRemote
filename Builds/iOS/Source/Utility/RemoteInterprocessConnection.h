@@ -28,7 +28,7 @@ public:
     String getAlbumTitle();
     String getArtist();
     String getSong();
-    int getLength();
+    float getLength();
     
     int getPosition();
     void setPosition(int incomingPosition);
@@ -37,11 +37,14 @@ public:
     int getTrackNum();
     
     float getVolume();
+    void setVolume(float incomingVolume);
+    
     Image getAlbumArt();
     
 private:
     String albumTitle, artist, song;
-    int tracksTotal, trackNum, length, position;
+    int tracksTotal, trackNum, position;
+    float length;
     float volume;
     Image albumArt;
     

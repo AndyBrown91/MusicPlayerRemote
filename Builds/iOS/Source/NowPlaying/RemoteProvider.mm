@@ -72,33 +72,32 @@
 
 -(void)musicPlayerDidStartPlaying:(BeamMusicPlayerViewController*)player
 {
-
+    NSLog(@"Did start");
 }
 
 -(BOOL)musicPlayerShouldStartPlaying:(BeamMusicPlayerViewController*)player
 {
-    
+    NSLog(@"should start");
 }
 
 -(void)musicPlayerDidStopPlaying:(BeamMusicPlayerViewController*)player
 {
-    
+    NSLog(@"Did stop");
 }
 
 -(void)musicPlayerDidStopPlayingLastTrack:(BeamMusicPlayerViewController*)player
 {
-    
+    NSLog(@"Did stop Final");
 }
-
 
 -(BOOL)musicPlayerShouldStopPlaying:(BeamMusicPlayerViewController*)player
 {
-    
+    NSLog(@"should stop");
 }
 
 -(void)musicPlayer:(BeamMusicPlayerViewController*)player didSeekToPosition:(CGFloat)position
 {
-    NSLog(@"Seek changed");
+//    connection->setPosition((int)position);
 }
 
 -(BOOL)musicPlayer:(BeamMusicPlayerViewController*)player shouldChangeTrack:(NSUInteger)track
@@ -113,7 +112,7 @@
 
 -(void)musicPlayer:(BeamMusicPlayerViewController*)player didChangeVolume:(CGFloat)volume
 {
-    
+    connection->setVolume((float)volume); 
 }
 
 -(void)musicPlayer:(BeamMusicPlayerViewController*)player didChangeShuffleState:(BOOL)shuffling

@@ -52,7 +52,7 @@ void RemoteInterprocessConnection::messageReceived (const MemoryBlock& message)
             song = stringMessage.fromFirstOccurrenceOf("Song: ", false, true);
         }
         else if (stringMessage.startsWith("Length")) {
-            length = (stringMessage.fromFirstOccurrenceOf("Length: ", false, true)).getIntValue();
+            length = (stringMessage.fromFirstOccurrenceOf("Length: ", false, true)).getFloatValue();
         }
         else if (stringMessage.startsWith("TracksTotal")) {
             tracksTotal = (stringMessage.fromFirstOccurrenceOf("TracksTotal: ", false, true)).getIntValue();
@@ -96,7 +96,8 @@ String RemoteInterprocessConnection::getSong()
 {    
     return song;
 }
-int RemoteInterprocessConnection::getLength()
+
+float RemoteInterprocessConnection::getLength()
 {
     return length;
 }
@@ -120,6 +121,11 @@ int RemoteInterprocessConnection::getTrackNum()
 float RemoteInterprocessConnection::getVolume()
 {
     return volume;
+}
+void RemoteInterprocessConnection::setVolume(float incomingVolume)
+{
+    volume = incomingVolume;
+    sendString("Volume: " + String(volume));
 }
 Image RemoteInterprocessConnection::getAlbumArt()
 {
