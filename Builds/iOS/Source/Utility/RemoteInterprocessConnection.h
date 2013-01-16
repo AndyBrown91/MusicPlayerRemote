@@ -10,9 +10,7 @@
 #define REMOTEINTERPROCESSCONNECTION 
 
 #include "../JuceLibraryCode/JuceHeader.h"
-//#include "RemoteControl.h"
-//#include "Settings.h"
-//#include "MusicLibraryHelpers.h"
+//#include "RemoteProvider.h"
 
 class RemoteInterprocessConnection  : public InterprocessConnection
 {
@@ -28,24 +26,25 @@ public:
     String getAlbumTitle();
     String getArtist();
     String getSong();
-    float getLength();
+    double getLength();
     
     int getPosition();
-    void setPosition(int incomingPosition);
+    void setPosition(double incomingPosition);
     
     int getTracksInPlayer();
     int getTrackNum();
     
-    float getVolume();
-    void setVolume(float incomingVolume);
+    double getVolume();
+    void setVolume(double incomingVolume);
     
     Image getAlbumArt();
     
+//    void setRemoteProvider(RemoteProvider provider);
+    
 private:
     String albumTitle, artist, song;
-    int tracksTotal, trackNum, position;
-    float length;
-    float volume;
+    int tracksTotal, trackNum;
+    double length, volume, position;
     Image albumArt;
     
     bool recievingArt, playState;

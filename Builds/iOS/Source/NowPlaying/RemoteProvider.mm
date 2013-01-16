@@ -47,7 +47,7 @@
 }
 
 -(CGFloat)musicPlayer:(BeamMusicPlayerViewController *)player lengthForTrack:(NSUInteger)trackNumber {
-    return (CGFloat)(connection->getLength());
+    return (NSUInteger)(connection->getLength());
 }
 
 -(NSInteger)numberOfTracksInPlayer:(BeamMusicPlayerViewController *)player {
@@ -97,7 +97,7 @@
 
 -(void)musicPlayer:(BeamMusicPlayerViewController*)player didSeekToPosition:(CGFloat)position
 {
-//    connection->setPosition((int)position);
+    connection->setPosition((float)position);
 }
 
 -(BOOL)musicPlayer:(BeamMusicPlayerViewController*)player shouldChangeTrack:(NSUInteger)track

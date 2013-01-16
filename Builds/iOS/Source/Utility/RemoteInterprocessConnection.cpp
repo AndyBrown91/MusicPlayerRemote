@@ -52,7 +52,7 @@ void RemoteInterprocessConnection::messageReceived (const MemoryBlock& message)
             song = stringMessage.fromFirstOccurrenceOf("Song: ", false, true);
         }
         else if (stringMessage.startsWith("Length")) {
-            length = (stringMessage.fromFirstOccurrenceOf("Length: ", false, true)).getFloatValue();
+            length = (stringMessage.fromFirstOccurrenceOf("Length: ", false, true)).getDoubleValue();
         }
         else if (stringMessage.startsWith("TracksTotal")) {
             tracksTotal = (stringMessage.fromFirstOccurrenceOf("TracksTotal: ", false, true)).getIntValue();
@@ -61,10 +61,10 @@ void RemoteInterprocessConnection::messageReceived (const MemoryBlock& message)
             trackNum = (stringMessage.fromFirstOccurrenceOf("TrackNum: ", false, true)).getIntValue();
         }
         else if (stringMessage.startsWith("Position")) {
-            position = (stringMessage.fromFirstOccurrenceOf("Position: ", false, true)).getIntValue();
+            position = (stringMessage.fromFirstOccurrenceOf("Position: ", false, true)).getDoubleValue();
         }
         else if (stringMessage.startsWith("Volume")) {
-            volume = (stringMessage.fromFirstOccurrenceOf("Volume: ", false, true)).getFloatValue();
+            volume = (stringMessage.fromFirstOccurrenceOf("Volume: ", false, true)).getDoubleValue();
         }
         else if (stringMessage.startsWith("PlayState")) {
             playState = static_cast<bool>((stringMessage.fromFirstOccurrenceOf("PlayState: ", false, true)).getIntValue());
@@ -72,6 +72,10 @@ void RemoteInterprocessConnection::messageReceived (const MemoryBlock& message)
         else if (stringMessage.startsWith("AlbumArt"))
         {
             recievingArt = true;
+        }
+        else if (stringMessage.startsWith("NewTrack"))
+        {
+            
         }
             
     }
@@ -97,7 +101,7 @@ String RemoteInterprocessConnection::getSong()
     return song;
 }
 
-float RemoteInterprocessConnection::getLength()
+double RemoteInterprocessConnection::getLength()
 {
     return length;
 }
@@ -105,10 +109,10 @@ int RemoteInterprocessConnection::getPosition()
 {
     return position;
 }
-void RemoteInterprocessConnection::setPosition(int incomingPosition)
+void RemoteInterprocessConnection::setPosition(double incomingPosition)
 {
     position = incomingPosition;
-    sendString("Position: " + position);
+    sendString("Position: " + String(position));
 }
 int RemoteInterprocessConnection::getTracksInPlayer()
 {
@@ -118,11 +122,11 @@ int RemoteInterprocessConnection::getTrackNum()
 {
     return trackNum;
 }
-float RemoteInterprocessConnection::getVolume()
+double RemoteInterprocessConnection::getVolume()
 {
     return volume;
 }
-void RemoteInterprocessConnection::setVolume(float incomingVolume)
+void RemoteInterprocessConnection::setVolume(double incomingVolume)
 {
     volume = incomingVolume;
     sendString("Volume: " + String(volume));
