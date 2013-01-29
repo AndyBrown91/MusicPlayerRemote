@@ -7,11 +7,12 @@
 //
 
 #import "NowPlayingViewController.h"
+#import "AppDelegate.h"
 
 @implementation NowPlayingViewController
 
 @synthesize window = _window;
-@synthesize viewController = _viewController;
+@synthesize viewController; //= _viewController;
 @synthesize exampleProvider;
 
 - (void)didReceiveMemoryWarning
@@ -26,10 +27,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    connection = appDelegate.connection;
+
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.viewController = [BeamMusicPlayerViewController new];
+    self.viewController = appDelegate.viewController;
     self.viewController.backBlock = ^{
         NSLog(@"Back Pressed");
         //self.window.rootViewController = nil;
@@ -50,7 +55,7 @@
     [self.window makeKeyAndVisible];
     
 #if TARGET_IPHONE_SIMULATOR
-    self.exampleProvider = [RemoteProvider new];
+    self.exampleProvider = appDelegate.provider;
     
     self.viewController.dataSource = self.exampleProvider;
     self.viewController.delegate = self.exampleProvider;

@@ -10,7 +10,9 @@
 #define REMOTEINTERPROCESSCONNECTION 
 
 #include "../JuceLibraryCode/JuceHeader.h"
-//#include "RemoteProvider.h"
+//
+#include "RemoteProvider.h"
+#include "BeamMusicPlayerViewController.h"
 
 class RemoteInterprocessConnection  : public InterprocessConnection
 {
@@ -22,6 +24,9 @@ public:
     void connectionLost();
     void messageReceived (const MemoryBlock& message);
     void sendString(String incomingMessage);
+    
+    void Next();
+    void Previous();
     
     String getAlbumTitle();
     String getArtist();
@@ -37,17 +42,24 @@ public:
     double getVolume();
     void setVolume(double incomingVolume);
     
-    Image getAlbumArt();
+    void setProvider (RemoteProvider* incomingProvider);
+    void setController (BeamMusicPlayerViewController* viewController);
     
+    String getAlbumFile();
 //    void setRemoteProvider(RemoteProvider provider);
     
 private:
     String albumTitle, artist, song;
     int tracksTotal, trackNum;
     double length, volume, position;
-    Image albumArt;
+    
+    String albumFile;
+    NSString* albumArtType;
     
     bool recievingArt, playState;
+    
+    RemoteProvider* remoteProvider;
+    BeamMusicPlayerViewController* controller;
 };
 
 

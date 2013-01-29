@@ -23,10 +23,10 @@
         // Put it far offscreen
         view.frame = CGRectMake(1000, 1000, 120, 12);
         [[UIApplication sharedApplication].keyWindow addSubview:view];
-        
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        connection = appDelegate.connection;
     }
+    
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    connection = appDelegate.connection;
     
     return self;
 }
@@ -55,16 +55,14 @@
 }
 
 -(NSInteger)currentNumberOfTrackInPlayer:(BeamMusicPlayerViewController *)player {
-    return (NSInteger)(connection->getTracksInPlayer());
+    return (NSInteger)(connection->getTrackNum());
 }
 
 -(void)musicPlayer:(BeamMusicPlayerViewController *)player artworkForTrack:(NSUInteger)trackNumber receivingBlock:(BeamMusicPlayerReceivingBlock)receivingBlock {
-    NSString* url = @"http://i107.photobucket.com/albums/m290/Barry_026/adebisishankEPcover.jpg";
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        NSData* urlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
-        
-        UIImage* image = [UIImage imageWithData:urlData];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{     
+        NSString* artLocation = (NSString*)(connection->getAlbumFile().toCFString());
+        UIImage* image = [UIImage imageWithContentsOfFile:artLocation];
         receivingBlock(image,nil);
     });
 }
@@ -102,12 +100,17 @@
 
 -(BOOL)musicPlayer:(BeamMusicPlayerViewController*)player shouldChangeTrack:(NSUInteger)track
 {
-    
+    //
 }
 
 -(NSInteger)musicPlayer:(BeamMusicPlayerViewController*)player didChangeTrack:(NSUInteger)track
 {
-    
+    if (track > [self currentNumberOfTrackInPlayer:controller]) {
+        connection->Next();
+    }
+    else
+        connection->Previous();
+    return track;
 }
 
 -(void)musicPlayer:(BeamMusicPlayerViewController*)player didChangeVolume:(CGFloat)volume

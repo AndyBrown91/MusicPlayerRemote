@@ -30,7 +30,7 @@
 		A1E9F62016946AE0001B22A8 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1E9F61C16946AE0001B22A8 /* main.mm */; };
 		A1E9F631169470B6001B22A8 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E9F62D169470B6001B22A8 /* first.png */; };
 		A1EA6746169473CD00AE615A /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = A1EA6744169473CD00AE615A /* settings.png */; };
-		A1EA674B169474A400AE615A /* RemoteInterprocessConnection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1EA6749169474A400AE615A /* RemoteInterprocessConnection.cpp */; };
+		A1EA674B169474A400AE615A /* RemoteInterprocessConnection.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1EA6749169474A400AE615A /* RemoteInterprocessConnection.mm */; };
 		A1EA674D16948A8700AE615A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A1EA674C16948A8600AE615A /* Settings.bundle */; };
 		A1F70A481697461E001078E5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F70A431697460C001078E5 /* MessageUI.framework */; };
 		A1F70A581697464A001078E5 /* AutoScrollLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F70A4B1697464A001078E5 /* AutoScrollLabel.m */; };
@@ -227,7 +227,7 @@
 		A1E9F62E169470B6001B22A8 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
 		A1EA6744169473CD00AE615A /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		A1EA6745169473CD00AE615A /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
-		A1EA6749169474A400AE615A /* RemoteInterprocessConnection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RemoteInterprocessConnection.cpp; path = Source/Utility/RemoteInterprocessConnection.cpp; sourceTree = "<group>"; };
+		A1EA6749169474A400AE615A /* RemoteInterprocessConnection.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = RemoteInterprocessConnection.mm; path = Source/Utility/RemoteInterprocessConnection.mm; sourceTree = "<group>"; };
 		A1EA674A169474A400AE615A /* RemoteInterprocessConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RemoteInterprocessConnection.h; path = Source/Utility/RemoteInterprocessConnection.h; sourceTree = "<group>"; };
 		A1EA674C16948A8600AE615A /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = Source/Settings.bundle; sourceTree = "<group>"; };
 		A1F70A431697460C001078E5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -598,7 +598,7 @@
 		A1EA67481694748F00AE615A /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				A1EA6749169474A400AE615A /* RemoteInterprocessConnection.cpp */,
+				A1EA6749169474A400AE615A /* RemoteInterprocessConnection.mm */,
 				A1EA674A169474A400AE615A /* RemoteInterprocessConnection.h */,
 			);
 			name = Utility;
@@ -1009,7 +1009,7 @@
 				A1E9F61716946AC8001B22A8 /* FirstViewController.mm in Sources */,
 				A1E9F61A16946AC8001B22A8 /* NowPlayingViewController.mm in Sources */,
 				A1E9F62016946AE0001B22A8 /* main.mm in Sources */,
-				A1EA674B169474A400AE615A /* RemoteInterprocessConnection.cpp in Sources */,
+				A1EA674B169474A400AE615A /* RemoteInterprocessConnection.mm in Sources */,
 				A1F70A581697464A001078E5 /* AutoScrollLabel.m in Sources */,
 				A10CFD8416988A8D009E6AA0 /* BeamMinimalExampleProvider.m in Sources */,
 				A1D3C5B61698CC6C001DD825 /* BeamMusicPlayerViewController.mm in Sources */,

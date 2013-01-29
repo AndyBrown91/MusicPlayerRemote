@@ -8,10 +8,11 @@
 #import <Foundation/Foundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "BeamMusicPlayerViewController.h"
+#import "../JuceLibraryCode/JuceHeader.h"
 
-#import "RemoteInterprocessConnection.h"
+//#import "RemoteInterprocessConnection.h"
 
-//class RemoteInterprocessConnection;
+class RemoteInterprocessConnection;
 
 @interface RemoteProvider : NSObject<BeamMusicPlayerDelegate, BeamMusicPlayerDataSource>
 {

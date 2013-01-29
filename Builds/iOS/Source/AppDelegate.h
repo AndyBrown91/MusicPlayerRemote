@@ -8,14 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "RemoteInterprocessConnection.h"
+#import "RemoteProvider.h"
+#import "BeamMusicPlayerViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate>
 {
     NSString *ipAddress;
     int port;
+    NSString *connectionMade;
 }
 @property (strong, nonatomic) UIWindow *window;
 @property (assign, nonatomic) RemoteInterprocessConnection *connection;
+@property (assign, nonatomic) RemoteProvider *provider;
+@property (strong, nonatomic) BeamMusicPlayerViewController *viewController;
 
 - (void) registerDefaultsFromSettingsBundle;
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;

@@ -13,10 +13,15 @@
 #import "BeamMinimalExampleProvider.h"
 #import "RemoteProvider.h"
 
+class RemoteInterprocessConnection;
+
 @class BeamMusicPlayerViewController;
 
 @interface NowPlayingViewController : UIViewController <BeamMusicPlayerDelegate>
-
+{
+    RemoteInterprocessConnection* connection;
+    BeamMusicPlayerViewController *viewController;
+}
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) BeamMusicPlayerViewController *viewController;

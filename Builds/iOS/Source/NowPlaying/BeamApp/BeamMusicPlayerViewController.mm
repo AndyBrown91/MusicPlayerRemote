@@ -347,38 +347,44 @@
  * Changes the track to the new track given.
  */
 -(void)changeTrack:(NSInteger)newTrack {
-    BOOL shouldChange = YES;
-    if ( [self.delegate respondsToSelector:@selector(musicPlayer:shoulChangeTrack:) ]){
-        shouldChange = [self.delegate musicPlayer:self shouldChangeTrack:newTrack];
+    if ([self.delegate respondsToSelector:@selector(musicPlayer:didChangeTrack:)])
+    {
+        if (newTrack > 0 && newTrack <= numberOfTracks)
+        [self.delegate musicPlayer:self didChangeTrack:newTrack];
     }
     
-    if([self.dataSource respondsToSelector:@selector(numberOfTracksInPlayer:)])
-        self.numberOfTracks = [self.dataSource numberOfTracksInPlayer:self];
-    else
-        self.numberOfTracks = -1;
-    
-    if (newTrack < 0 || (self.numberOfTracksAvailable && newTrack >= self.numberOfTracks)){
-        shouldChange = NO;
-        // If we can't next, stop the playback.
-        // TODO: notify delegate about the fact we felt off the playlist
-        [self pause];
-    }
-    
-    if ( shouldChange ){
-        if ( [self.delegate respondsToSelector:@selector(musicPlayer:didChangeTrack:) ]){
-            newTrack = [self.delegate musicPlayer:self didChangeTrack:newTrack];
-        }
-        if(newTrack == NSNotFound) {
-            // TODO: notify delegate about the fact we felt off the playlist
-            [self pause];
-        } else {
-            self->currentPlaybackPosition = 0;
-            self.currentTrack = newTrack;
-            
-            self.currentTrackLength = [self.dataSource musicPlayer:self lengthForTrack:self.currentTrack];
-            [self updateUI];
-        }
-    }
+//    BOOL shouldChange = YES;
+//    if ( [self.delegate respondsToSelector:@selector(musicPlayer:shoulChangeTrack:) ]){
+//        shouldChange = [self.delegate musicPlayer:self shouldChangeTrack:newTrack];
+//    }
+//    
+//    if([self.dataSource respondsToSelector:@selector(numberOfTracksInPlayer:)])
+//        self.numberOfTracks = [self.dataSource numberOfTracksInPlayer:self];
+//    else
+//        self.numberOfTracks = -1;
+//    
+//    if (newTrack < 0 || (self.numberOfTracksAvailable && newTrack >= self.numberOfTracks)){
+//        shouldChange = NO;
+//        // If we can't next, stop the playback.
+//        // TODO: notify delegate about the fact we felt off the playlist
+//        [self pause];
+//    }
+//    
+//    if ( shouldChange ){
+//        if ( [self.delegate respondsToSelector:@selector(musicPlayer:didChangeTrack:) ]){
+//            newTrack = [self.delegate musicPlayer:self didChangeTrack:newTrack];
+//        }
+//        if(newTrack == NSNotFound) {
+//            // TODO: notify delegate about the fact we felt off the playlist
+//            [self pause];
+//        } else {
+//            self->currentPlaybackPosition = 0;
+//            self.currentTrack = newTrack;
+//            
+//            self.currentTrackLength = [self.dataSource musicPlayer:self lengthForTrack:self.currentTrack];
+//            [self updateUI];
+//        }
+//    }
 }
 
 -(void)next {
@@ -488,7 +494,8 @@
  * Setting the volume really just changes the slider
  */
 -(void)setVolume:(CGFloat)volume {
-    self.volumeSlider.value = volume;
+    //self.volumeSlider.value = volume;
+    [self.volumeSlider setValue:volume animated:true];
 }
 
 /*

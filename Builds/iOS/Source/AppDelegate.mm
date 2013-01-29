@@ -12,6 +12,8 @@
 
 @synthesize window = _window;
 @synthesize connection;
+@synthesize provider;
+@synthesize viewController;
 
 - (void)registerDefaultsFromSettingsBundle
 {
@@ -70,7 +72,13 @@
     if (!connection->connectToSocket([ipAddress UTF8String], port, 100)) {
             [self displayIpAlert];
     }
-
+    
+    provider = [RemoteProvider new];
+    viewController = [BeamMusicPlayerViewController new];
+    connection->setProvider(provider);
+    connection->setController(viewController);
+    connectionMade = @"ConnectionMade";
+    connection->sendString([connectionMade UTF8String]);
     
     return YES;
 }
@@ -104,6 +112,7 @@
     if (!connection->connectToSocket([ipAddress UTF8String], port, 100)) {
         [self displayIpAlert];
     }
+    connection->sendString([connectionMade UTF8String]);
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
