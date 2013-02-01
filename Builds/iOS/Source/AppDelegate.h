@@ -19,7 +19,7 @@
 }
 @property (strong, nonatomic) UIWindow *window;
 @property (assign, nonatomic) RemoteInterprocessConnection *connection;
-@property (assign, nonatomic) RemoteProvider *provider;
+@property (strong, nonatomic) RemoteProvider *provider;
 @property (strong, nonatomic) BeamMusicPlayerViewController *viewController;
 
 - (void) registerDefaultsFromSettingsBundle;

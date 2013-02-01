@@ -7,6 +7,7 @@
 //
 
 #include "RemoteInterprocessConnection.h"
+#include "AppDelegate.h"
 
 RemoteInterprocessConnection::RemoteInterprocessConnection () : InterprocessConnection(false)
 {
@@ -28,6 +29,8 @@ void RemoteInterprocessConnection::connectionMade()
 void RemoteInterprocessConnection::connectionLost()
 {
     DBG("Connection # - connection lost");
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//    [appDelegate displayIpAlert];
     //remoteNumConnections--;
 }
 
@@ -35,19 +38,9 @@ void RemoteInterprocessConnection::messageReceived (const MemoryBlock& message)
 {    
     if (recievingArt) {
         //Incoming block is album art
-//        MemoryInputStream* artData = new MemoryInputStream(message, true);
-//        DBG("Memory Input Stream = " + artData->getDataSize());
-//        Image albumArt = ImageFileFormat::loadFrom(artData);
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); 
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-
-        documentsDirectory = [documentsDirectory stringByAppendingPathComponent:[@"albumCover." stringByAppendingString:@"jpeg"]];
-        
-        albumFile = [documentsDirectory UTF8String];
-
-        NSData* artData = [NSData dataWithBytes:message.getData() length:(NSUInteger)message.getSize()];
-        
-        [artData writeToFile:documentsDirectory atomically:YES];
+        artData = [NSMutableData alloc];
+        [artData resetBytesInRange:NSMakeRange(0, [artData length])];
+        artData = [NSMutableData dataWithBytes:message.getData() length:(NSUInteger)message.getSize()];
         recievingArt = false;
     }
     else
@@ -72,20 +65,42 @@ void RemoteInterprocessConnection::messageReceived (const MemoryBlock& message)
         else if (stringMessage.startsWith("TrackNum")) {
             trackNum = (stringMessage.fromFirstOccurrenceOf("TrackNum: ", false, true)).getIntValue();
             controller.currentTrack = trackNum;
+            //[controller updateTrackDisplay];
         }
         else if (stringMessage.startsWith("Position")) {
             position = (stringMessage.fromFirstOccurrenceOf("Position: ", false, true)).getDoubleValue();
+            if (controller != nil)
+            {
+                controller.currentPlaybackPosition = static_cast<CGFloat>(position);
+                [controller updateSeekUI];
+            }
         }
         else if (stringMessage.startsWith("Volume")) {
             volume = (stringMessage.fromFirstOccurrenceOf("Volume: ", false, true)).getDoubleValue();
             
-            CGFloat cVolume = static_cast<CGFloat>(volume);
-
-            [controller setVolume:cVolume];
-
+            //controller.volume = static_cast<CGFloat>(volume);
+            [controller setVolume:static_cast<CGFloat>(volume)];
         }
         else if (stringMessage.startsWith("PlayState")) {
             playState = static_cast<bool>((stringMessage.fromFirstOccurrenceOf("PlayState: ", false, true)).getIntValue());
+
+//            //controller.playing = !playState;
+//            
+            if (playState)
+            {
+                remoteProvider.receiving = true;
+                controller.playing = false;
+                [controller play];
+                remoteProvider.receiving = false;
+            }
+            else
+            {
+                remoteProvider.receiving = true;
+                controller.playing = true;
+                [controller pause];
+                remoteProvider.receiving = false;
+            }
+//            [controller adjustPlayButtonState];
         }
         else if (stringMessage.startsWith("AlbumArt"))
         {
@@ -103,7 +118,7 @@ void RemoteInterprocessConnection::messageReceived (const MemoryBlock& message)
         }
         else if (stringMessage.startsWith("NewTrack"))
         {
-            //[controller reloadData];
+            //[controller updateUI];
         }
             
     }
@@ -114,6 +129,17 @@ void RemoteInterprocessConnection::sendString(String incomingMessage)
 {
     MemoryBlock messageData (incomingMessage.toUTF8(), (size_t) incomingMessage.getNumBytesAsUTF8());
     sendMessage(messageData);
+}
+
+//CONTROLS
+void RemoteInterprocessConnection::Play()
+{
+    sendString("Play");
+}
+
+void RemoteInterprocessConnection::Pause()
+{
+    sendString("Pause");
 }
 
 void RemoteInterprocessConnection::Next()
@@ -143,10 +169,7 @@ double RemoteInterprocessConnection::getLength()
 {
     return length;
 }
-int RemoteInterprocessConnection::getPosition()
-{
-    return position;
-}
+
 void RemoteInterprocessConnection::setPosition(double incomingPosition)
 {
     position = incomingPosition;
@@ -170,9 +193,9 @@ void RemoteInterprocessConnection::setVolume(double incomingVolume)
     sendString("Volume: " + String(volume));
 }
 
-String RemoteInterprocessConnection::getAlbumFile()
+NSMutableData* RemoteInterprocessConnection::getAlbumCover()
 {
-    return albumFile;
+    return artData;
 }
 
 void RemoteInterprocessConnection::setProvider(RemoteProvider *incomingProvider)

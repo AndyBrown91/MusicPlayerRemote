@@ -25,6 +25,8 @@ public:
     void messageReceived (const MemoryBlock& message);
     void sendString(String incomingMessage);
     
+    void Play();
+    void Pause();
     void Next();
     void Previous();
     
@@ -33,7 +35,6 @@ public:
     String getSong();
     double getLength();
     
-    int getPosition();
     void setPosition(double incomingPosition);
     
     int getTracksInPlayer();
@@ -45,7 +46,7 @@ public:
     void setProvider (RemoteProvider* incomingProvider);
     void setController (BeamMusicPlayerViewController* viewController);
     
-    String getAlbumFile();
+    NSMutableData* getAlbumCover();
 //    void setRemoteProvider(RemoteProvider provider);
     
 private:
@@ -53,8 +54,8 @@ private:
     int tracksTotal, trackNum;
     double length, volume, position;
     
-    String albumFile;
     NSString* albumArtType;
+    NSMutableData* artData;
     
     bool recievingArt, playState;
     

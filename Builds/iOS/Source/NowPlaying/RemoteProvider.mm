@@ -12,6 +12,7 @@
 
 @synthesize musicPlayer;
 @synthesize controller;
+@synthesize receiving;
 //@synthesize mediaItems;
 
 -(id)init {
@@ -27,6 +28,8 @@
     
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     connection = appDelegate.connection;
+    
+    receiving = false;
     
     return self;
 }
@@ -61,8 +64,7 @@
 -(void)musicPlayer:(BeamMusicPlayerViewController *)player artworkForTrack:(NSUInteger)trackNumber receivingBlock:(BeamMusicPlayerReceivingBlock)receivingBlock {
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{     
-        NSString* artLocation = (NSString*)(connection->getAlbumFile().toCFString());
-        UIImage* image = [UIImage imageWithContentsOfFile:artLocation];
+        UIImage* image = [UIImage imageWithData:connection->getAlbumCover()];
         receivingBlock(image,nil);
     });
 }
@@ -70,17 +72,22 @@
 
 -(void)musicPlayerDidStartPlaying:(BeamMusicPlayerViewController*)player
 {
-    NSLog(@"Did start");
+    if(!receiving)
+    {
+       if(!controller.playing)
+       connection->Play();
+    }
 }
 
 -(BOOL)musicPlayerShouldStartPlaying:(BeamMusicPlayerViewController*)player
 {
-    NSLog(@"should start");
+
 }
 
 -(void)musicPlayerDidStopPlaying:(BeamMusicPlayerViewController*)player
 {
-    NSLog(@"Did stop");
+    if (!receiving)
+    connection->Pause();
 }
 
 -(void)musicPlayerDidStopPlayingLastTrack:(BeamMusicPlayerViewController*)player

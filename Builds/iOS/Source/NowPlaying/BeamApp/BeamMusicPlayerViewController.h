@@ -45,7 +45,7 @@
 @property (nonatomic) NSInteger currentTrack; 
 
 /// YES, if the player is in play-state
-@property (nonatomic,readonly) BOOL playing; 
+@property (nonatomic/*,readonly*/) BOOL playing; 
 
 /// The Current Playback position in seconds
 @property (nonatomic) CGFloat currentPlaybackPosition; 
@@ -100,6 +100,11 @@
  */
 -(void)previous;
 
+-(void)adjustPlayButtonState;
+
+-(void)updateSeekUI;
+
+-(void)updateUI;
 /// --------------------------------
 /// @name Controlling User Interaction
 /// --------------------------------

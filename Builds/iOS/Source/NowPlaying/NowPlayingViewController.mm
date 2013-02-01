@@ -81,7 +81,8 @@
     self.viewController.shouldHideNextTrackButtonAtBoundary = YES;
     self.viewController.shouldHidePreviousTrackButtonAtBoundary = YES;
     
-    [self.viewController play];
+//    [self.viewController play];
+    [self.viewController adjustPlayButtonState];
 }
 
 - (void)viewDidUnload

@@ -258,27 +258,26 @@
     } else {
         self.playButton.image = [UIImage imageNamed:@"BeamMusicPlayerController.bundle/images/pause.png"];
     }
-}
-
+} 
 
 -(void)play {
-    if ( !self.playing ){
+//    if ( !self.playing ){
         self->playing = YES;
         
-        self.playbackTickTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(playbackTick:) userInfo:nil repeats:YES];
+//        self.playbackTickTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(playbackTick:) userInfo:nil repeats:YES];
         
         if ( [self.delegate respondsToSelector:@selector(musicPlayerDidStartPlaying:)] ){
             [self.delegate musicPlayerDidStartPlaying:self];
         }
         [self adjustPlayButtonState];
-    }
+//    }
 }
 
 -(void)pause {
-    if ( self.playing ){
+//    if ( self.playing ){
         self->playing = NO;
-        [self.playbackTickTimer invalidate];
-        self.playbackTickTimer = nil;
+        //[self.playbackTickTimer invalidate];
+        //self.playbackTickTimer = nil;
         
         if ( [self.delegate respondsToSelector:@selector(musicPlayerDidStopPlaying:)] ){
             [self.delegate musicPlayerDidStopPlaying:self];
@@ -286,7 +285,7 @@
         
         [self adjustPlayButtonState];
         
-    }
+//    }
 }
 
 /*
@@ -432,7 +431,7 @@
     else
         self.numberOfTracks = -1;
     self.currentTrackLength = [self.dataSource musicPlayer:self lengthForTrack:self.currentTrack];
-    
+
     [self updateUI];
 }
 
@@ -494,8 +493,8 @@
  * Setting the volume really just changes the slider
  */
 -(void)setVolume:(CGFloat)volume {
-    //self.volumeSlider.value = volume;
-    [self.volumeSlider setValue:volume animated:true];
+    self.volumeSlider.value = volume;
+    //[self.volumeSlider setValue:volume animated:false];
 }
 
 /*
@@ -524,6 +523,14 @@
     [self previous];
 }
 
+/*
+ * Action triggered by the volume slider
+ */
+-(IBAction)volumeSliderValueChanged:(id)sender {
+    if ( [self.delegate respondsToSelector:@selector(musicPlayer:didChangeVolume:)]) {
+        [self.delegate musicPlayer:self didChangeVolume:self.volumeSlider.value];
+    }
+}
 
 /**
  * Called when the cover art is tapped. Either shows or hides the scrobble-ui
@@ -604,15 +611,6 @@
     
     [self updateSeekUI];
     
-}
-
-/*
- * Action triggered by the volume slider
- */
--(IBAction)volumeSliderValueChanged:(id)sender {
-    if ( [self.delegate respondsToSelector:@selector(musicPlayer:didChangeVolume:)]) {
-        [self.delegate musicPlayer:self didChangeVolume:self.volumeSlider.value];
-    }
 }
 
 /*

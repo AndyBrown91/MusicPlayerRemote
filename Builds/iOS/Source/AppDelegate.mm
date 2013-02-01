@@ -64,13 +64,13 @@
 {
     // Override point for customization after application launch.
     [self registerDefaultsFromSettingsBundle];
-    
+
     ipAddress = [[NSUserDefaults standardUserDefaults] stringForKey:@"ipAddress"];
     port = [[NSUserDefaults standardUserDefaults] integerForKey:@"portNum"];
     connection = new RemoteInterprocessConnection();
 
     if (!connection->connectToSocket([ipAddress UTF8String], port, 100)) {
-            [self displayIpAlert];
+        [self displayIpAlert];
     }
     
     provider = [RemoteProvider new];
@@ -136,9 +136,10 @@
 
 - (void) displayIpAlert
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ip Address Required" message:@"Please enter the Ip Address of the computer running MusicPlayer" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ip Address Required" message:@"Please enter the Ip Address of the computer running MusicPlayer" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
     
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+
     UITextField* ipText = [alert textFieldAtIndex:0];
     ipText.text = ipAddress;
     
@@ -161,6 +162,8 @@
         if (!connection->connectToSocket([ipAddress UTF8String], port, 100)) {
             [self displayIpAlert];
         }
+        
+        connection->sendString([connectionMade UTF8String]);
         
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
         [prefs setObject:ipAddress forKey:@"ipAddress"];
