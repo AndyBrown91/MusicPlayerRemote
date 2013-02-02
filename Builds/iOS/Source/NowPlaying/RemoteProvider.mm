@@ -50,7 +50,7 @@
 }
 
 -(CGFloat)musicPlayer:(BeamMusicPlayerViewController *)player lengthForTrack:(NSUInteger)trackNumber {
-    return (NSUInteger)(connection->getLength());
+    return (CGFloat)(connection->getLength());
 }
 
 -(NSInteger)numberOfTracksInPlayer:(BeamMusicPlayerViewController *)player {
