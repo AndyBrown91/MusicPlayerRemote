@@ -8,40 +8,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Source/NowPlaying/BeamApp/BeamMusicPlayerViewController.mm"
-         timestampString = "381375017.355416"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "270"
-         endingLineNumber = "270"
-         landmarkName = "-play"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Source/NowPlaying/RemoteProvider.mm"
-         timestampString = "381376447.407871"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "78"
-         endingLineNumber = "78"
-         landmarkName = "-musicPlayerDidStartPlaying:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
          filePath = "Source/Utility/RemoteInterprocessConnection.mm"
-         timestampString = "381376962.676974"
+         timestampString = "381790780.612479"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "93"
-         endingLineNumber = "93"
+         startingLineNumber = "92"
+         endingLineNumber = "92"
          landmarkName = "RemoteInterprocessConnection::messageReceived (const MemoryBlock&amp; message)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -50,41 +22,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Source/NowPlaying/BeamApp/BeamMusicPlayerViewController.mm"
-         timestampString = "381376512.786597"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "277"
-         endingLineNumber = "277"
-         landmarkName = "-pause"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
          filePath = "Source/Utility/RemoteInterprocessConnection.mm"
-         timestampString = "381376962.676974"
+         timestampString = "381790780.612479"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "100"
-         endingLineNumber = "100"
+         startingLineNumber = "98"
+         endingLineNumber = "98"
          landmarkName = "RemoteInterprocessConnection::messageReceived (const MemoryBlock&amp; message)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Source/NowPlaying/BeamApp/BeamMusicPlayerViewController.mm"
-         timestampString = "381376660.074978"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "278"
-         endingLineNumber = "278"
-         landmarkName = "-pause"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -93,12 +37,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Source/NowPlaying/BeamApp/BeamMusicPlayerViewController.mm"
-         timestampString = "381376990.626268"
+         timestampString = "381794783.327704"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "272"
-         endingLineNumber = "272"
-         landmarkName = "-play"
+         startingLineNumber = "165"
+         endingLineNumber = "165"
+         landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

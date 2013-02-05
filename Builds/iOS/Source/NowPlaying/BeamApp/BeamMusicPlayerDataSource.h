@@ -85,4 +85,7 @@ typedef void(^BeamMusicPlayerReceivingBlock)(UIImage* image, NSError** error);
  */
 -(void)musicPlayer:(BeamMusicPlayerViewController*)player artworkForTrack:(NSUInteger)trackNumber receivingBlock:(BeamMusicPlayerReceivingBlock)receivingBlock;
 
+//Gets the volume on start up to make sure it displays correctly
+-(CGFloat)providerVolume:(BeamMusicPlayerViewController *)player;
+
 @end

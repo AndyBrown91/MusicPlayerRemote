@@ -162,6 +162,7 @@
     
     self.placeholderImageDelay = 0.5;
     
+    self.volumeSlider.value = [self.dataSource providerVolume:self];
 }
 
 - (void)viewDidUnload
@@ -261,7 +262,7 @@
 } 
 
 -(void)play {
-//    if ( !self.playing ){
+   if ( !self.playing ){
         self->playing = YES;
         
 //        self.playbackTickTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(playbackTick:) userInfo:nil repeats:YES];
@@ -270,11 +271,11 @@
             [self.delegate musicPlayerDidStartPlaying:self];
         }
         [self adjustPlayButtonState];
-//    }
+    }
 }
 
 -(void)pause {
-//    if ( self.playing ){
+    if ( self.playing ){
         self->playing = NO;
         //[self.playbackTickTimer invalidate];
         //self.playbackTickTimer = nil;
@@ -285,7 +286,7 @@
         
         [self adjustPlayButtonState];
         
-//    }
+    }
 }
 
 /*
@@ -489,12 +490,21 @@
 
 #pragma mark - Volume
 
+
+-(void)volumeSliderUsingNumber:(NSNumber*)number
+{
+    self.volumeSlider.value = [number floatValue]; 
+}
+
 /*
  * Setting the volume really just changes the slider
  */
 -(void)setVolume:(CGFloat)volume {
-    self.volumeSlider.value = volume;
+    //self.volumeSlider.value = volume;    
     //[self.volumeSlider setValue:volume animated:false];
+    
+    NSNumber *number = [NSNumber numberWithFloat:volume]; 
+    [self performSelectorOnMainThread:@selector(volumeSliderUsingNumber:) withObject:number waitUntilDone:NO];
 }
 
 /*

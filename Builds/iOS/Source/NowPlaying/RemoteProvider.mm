@@ -53,6 +53,10 @@
     return (NSUInteger)(connection->getLength());
 }
 
+-(CGFloat)providerVolume:(BeamMusicPlayerViewController *)player {
+    return (CGFloat)(connection->getVolume());
+}
+
 -(NSInteger)numberOfTracksInPlayer:(BeamMusicPlayerViewController *)player {
     return (NSInteger)(connection->getTracksInPlayer());
 }
@@ -78,37 +82,37 @@
        connection->Play();
     }
 }
-
--(BOOL)musicPlayerShouldStartPlaying:(BeamMusicPlayerViewController*)player
-{
-
-}
+//
+//-(BOOL)musicPlayerShouldStartPlaying:(BeamMusicPlayerViewController*)player
+//{
+//
+//}
 
 -(void)musicPlayerDidStopPlaying:(BeamMusicPlayerViewController*)player
 {
     if (!receiving)
     connection->Pause();
 }
-
--(void)musicPlayerDidStopPlayingLastTrack:(BeamMusicPlayerViewController*)player
-{
-    NSLog(@"Did stop Final");
-}
-
--(BOOL)musicPlayerShouldStopPlaying:(BeamMusicPlayerViewController*)player
-{
-    NSLog(@"should stop");
-}
+//
+//-(void)musicPlayerDidStopPlayingLastTrack:(BeamMusicPlayerViewController*)player
+//{
+//    NSLog(@"Did stop Final");
+//}
+//
+//-(BOOL)musicPlayerShouldStopPlaying:(BeamMusicPlayerViewController*)player
+//{
+//    NSLog(@"should stop");
+//}
 
 -(void)musicPlayer:(BeamMusicPlayerViewController*)player didSeekToPosition:(CGFloat)position
 {
     connection->setPosition((float)position);
 }
 
--(BOOL)musicPlayer:(BeamMusicPlayerViewController*)player shouldChangeTrack:(NSUInteger)track
-{
-    //
-}
+//-(BOOL)musicPlayer:(BeamMusicPlayerViewController*)player shouldChangeTrack:(NSUInteger)track
+//{
+//    //
+//}
 
 -(NSInteger)musicPlayer:(BeamMusicPlayerViewController*)player didChangeTrack:(NSUInteger)track
 {
@@ -125,14 +129,14 @@
     connection->setVolume((float)volume); 
 }
 
--(void)musicPlayer:(BeamMusicPlayerViewController*)player didChangeShuffleState:(BOOL)shuffling
-{
-    
-}
-
--(void)musicPlayer:(BeamMusicPlayerViewController*)player didChangeRepeatMode:(MPMusicRepeatMode)repeatMode
-{
-    
-}
+//-(void)musicPlayer:(BeamMusicPlayerViewController*)player didChangeShuffleState:(BOOL)shuffling
+//{
+//    
+//}
+//
+//-(void)musicPlayer:(BeamMusicPlayerViewController*)player didChangeRepeatMode:(MPMusicRepeatMode)repeatMode
+//{
+//    
+//}
 
 @end

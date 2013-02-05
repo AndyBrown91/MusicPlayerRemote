@@ -171,5 +171,15 @@
     }
 }
 
+-(void)dealloc
+{
+    delete connection;
+    connection = NULL;
+    
+    [provider release];
+    [viewController release];
+    [super dealloc];
+}
+
 
 @end

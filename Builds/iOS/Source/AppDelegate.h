@@ -18,7 +18,7 @@
     NSString *connectionMade;
 }
 @property (strong, nonatomic) UIWindow *window;
-@property (assign, nonatomic) RemoteInterprocessConnection *connection;
+@property (readonly, nonatomic) RemoteInterprocessConnection *connection;
 @property (strong, nonatomic) RemoteProvider *provider;
 @property (strong, nonatomic) BeamMusicPlayerViewController *viewController;
 

@@ -30,7 +30,9 @@ void RemoteInterprocessConnection::connectionLost()
 {
     DBG("Connection # - connection lost");
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-//    [appDelegate displayIpAlert];
+    
+    //[appDelegate performSelectorOnMainThread:@selector(displayIpAlert) withObject:nil waitUntilDone:NO];
+    
     //remoteNumConnections--;
 }
 
@@ -65,14 +67,14 @@ void RemoteInterprocessConnection::messageReceived (const MemoryBlock& message)
         else if (stringMessage.startsWith("TrackNum")) {
             trackNum = (stringMessage.fromFirstOccurrenceOf("TrackNum: ", false, true)).getIntValue();
             controller.currentTrack = trackNum;
-            //[controller updateTrackDisplay];
+            [controller performSelectorOnMainThread:@selector(updateTrackDisplay) withObject:nil waitUntilDone:NO];
         }
         else if (stringMessage.startsWith("Position")) {
             position = (stringMessage.fromFirstOccurrenceOf("Position: ", false, true)).getDoubleValue();
             if (controller != nil)
             {
                 controller.currentPlaybackPosition = static_cast<CGFloat>(position);
-                [controller updateSeekUI];
+                [controller performSelectorOnMainThread:@selector(updateSeekUI) withObject:nil waitUntilDone:NO];
             }
         }
         else if (stringMessage.startsWith("Volume")) {
@@ -83,24 +85,19 @@ void RemoteInterprocessConnection::messageReceived (const MemoryBlock& message)
         }
         else if (stringMessage.startsWith("PlayState")) {
             playState = static_cast<bool>((stringMessage.fromFirstOccurrenceOf("PlayState: ", false, true)).getIntValue());
-
-//            //controller.playing = !playState;
-//            
+           
             if (playState)
             {
                 remoteProvider.receiving = true;
-                controller.playing = false;
-                [controller play];
+                [controller performSelectorOnMainThread:@selector(play) withObject:nil waitUntilDone:NO];
                 remoteProvider.receiving = false;
             }
             else
             {
                 remoteProvider.receiving = true;
-                controller.playing = true;
-                [controller pause];
+                [controller performSelectorOnMainThread:@selector(pause) withObject:nil waitUntilDone:NO];
                 remoteProvider.receiving = false;
             }
-//            [controller adjustPlayButtonState];
         }
         else if (stringMessage.startsWith("AlbumArt"))
         {
@@ -118,7 +115,7 @@ void RemoteInterprocessConnection::messageReceived (const MemoryBlock& message)
         }
         else if (stringMessage.startsWith("NewTrack"))
         {
-            //[controller updateUI];
+            [controller performSelectorOnMainThread:@selector(updateUI) withObject:nil waitUntilDone:NO];
         }
             
     }
@@ -201,7 +198,6 @@ NSMutableData* RemoteInterprocessConnection::getAlbumCover()
 void RemoteInterprocessConnection::setProvider(RemoteProvider *incomingProvider)
 {
     remoteProvider = incomingProvider;
-    //remoteProvider.controller.currentTrack = 100;
 }
 
 void RemoteInterprocessConnection::setController (BeamMusicPlayerViewController* incomingController)
