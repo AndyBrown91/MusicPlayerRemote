@@ -162,7 +162,7 @@
     
     self.placeholderImageDelay = 0.5;
     
-    self.volumeSlider.value = [self.dataSource providerVolume:self];
+    //self.volumeSlider.value = [self.dataSource providerVolume:self];
 }
 
 - (void)viewDidUnload
@@ -228,10 +228,10 @@
         //        [[self.albumArtReflection layer] addAnimation:transition forKey:@"SlideOutandInImagek"];
         
         // Copy the current track to another variable, otherwise we would just access the current one.
-        NSUInteger track = self.currentTrack;
+       // NSUInteger track = self.currentTrack;
         // Request the image. 
         [self.dataSource musicPlayer:self artworkForTrack:self.currentTrack receivingBlock:^(UIImage *image, NSError *__autoreleasing *error) {
-            if ( track == self.currentTrack ){
+            //if ( track == self.currentTrack ){
                 
                 // If there is no image given, stay with the placeholder
                 if ( image  != nil ){
@@ -243,9 +243,9 @@
                     });
                 }
                 
-            } else {
-                NSLog(@"Discarded CoverArt for track: %d, current track already moved to %d.", track, self.currentTrack);
-            }
+//            } else {
+//                NSLog(@"Discarded CoverArt for track: %d, current track already moved to %d.", track, self.currentTrack);
+//            }
         }];
     }
 }
@@ -306,6 +306,9 @@
  */
 -(void)updateTrackDisplay {
     if ( !self.scrobbling ){
+        self.currentTrack = [self.dataSource currentNumberOfTrackInPlayer:self];
+        self.numberOfTracks = [self.dataSource numberOfTracksInPlayer:self];
+        
         self.numberOfTracksLabel.text = [NSString stringWithFormat:@"Track %d of %d", self.currentTrack, self.numberOfTracks];
         self.numberOfTracksLabel.hidden = !self.numberOfTracksAvailable;
     }
@@ -316,17 +319,31 @@
  * Adjusts the directional buttons to comply with the shouldHide-Button settings.
  */
 -(void)adjustDirectionalButtonStates {
-    if (self.numberOfTracksAvailable && self.currentTrack+1 == self.numberOfTracks && self.shouldHideNextTrackButtonAtBoundary ){
+//    if (self.numberOfTracksAvailable && self.currentTrack+1 == self.numberOfTracks && self.shouldHideNextTrackButtonAtBoundary ){
+//        self.fastForwardButton.enabled = NO;
+//    } else {
+//        self.fastForwardButton.enabled = YES;
+//    }
+    
+    if (self.numberOfTracks <= self.currentTrack) {
         self.fastForwardButton.enabled = NO;
-    } else {
+    }
+    else{
         self.fastForwardButton.enabled = YES;
     }
     
-    if (self.numberOfTracksAvailable && self.currentTrack == 0 && self.shouldHidePreviousTrackButtonAtBoundary ){
+    if (self.currentTrack == 1) {
         self.rewindButton.enabled = NO;
-    } else {
+    }
+    else {
         self.rewindButton.enabled = YES;
     }
+    
+//    if (self.numberOfTracksAvailable && self.currentTrack == 0 && self.shouldHidePreviousTrackButtonAtBoundary ){
+//        self.rewindButton.enabled = NO;
+//    } else {
+//        self.rewindButton.enabled = YES;
+//    }
 }
 
 
@@ -334,6 +351,7 @@
 
 -(void)updateUI {
     // Slider
+    self.currentTrackLength = [self.dataSource musicPlayer:self lengthForTrack:self.currentTrack];
     self.progressSlider.maximumValue = self.currentTrackLength;
     self.progressSlider.minimumValue = 0;
     

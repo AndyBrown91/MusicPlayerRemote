@@ -31,7 +31,7 @@ void RemoteInterprocessConnection::connectionLost()
     DBG("Connection # - connection lost");
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
-    //[appDelegate performSelectorOnMainThread:@selector(displayIpAlert) withObject:nil waitUntilDone:NO];
+    [appDelegate performSelectorOnMainThread:@selector(displayIpAlert) withObject:nil waitUntilDone:YES];
     
     //remoteNumConnections--;
 }
@@ -40,10 +40,10 @@ void RemoteInterprocessConnection::messageReceived (const MemoryBlock& message)
 {    
     if (recievingArt) {
         //Incoming block is album art
+        recievingArt = false;
         artData = [NSMutableData alloc];
         [artData resetBytesInRange:NSMakeRange(0, [artData length])];
         artData = [NSMutableData dataWithBytes:message.getData() length:(NSUInteger)message.getSize()];
-        recievingArt = false;
     }
     else
     {
@@ -60,6 +60,7 @@ void RemoteInterprocessConnection::messageReceived (const MemoryBlock& message)
         }
         else if (stringMessage.startsWith("Length")) {
             length = (stringMessage.fromFirstOccurrenceOf("Length: ", false, true)).getDoubleValue();
+            
         }
         else if (stringMessage.startsWith("TracksTotal")) {
             tracksTotal = (stringMessage.fromFirstOccurrenceOf("TracksTotal: ", false, true)).getIntValue();
@@ -102,17 +103,19 @@ void RemoteInterprocessConnection::messageReceived (const MemoryBlock& message)
         else if (stringMessage.startsWith("AlbumArt"))
         {
             String artType = stringMessage.fromFirstOccurrenceOf("AlbumArt: ", false, true);
-            if (artType.compareIgnoreCase("jpeg"))
+            
+            if (artType.equalsIgnoreCase("jpeg"))
             {
                 albumArtType = @"jpeg";
             }
-            else
+            else if (artType.equalsIgnoreCase("png"))
             {
                 albumArtType = @"png";
             }
-            
+
             recievingArt = true;
         }
+        
         else if (stringMessage.startsWith("NewTrack"))
         {
             [controller performSelectorOnMainThread:@selector(updateUI) withObject:nil waitUntilDone:NO];

@@ -145,6 +145,7 @@
     
     [alert addButtonWithTitle:@"Ok"];
     [alert show];
+//    [alert release];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -152,6 +153,7 @@
     NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
     if([title isEqualToString:@"Cancel"])
     {
+        [alertView release];
         [self displayIpAlert];
     }
     else if([title isEqualToString:@"Ok"])
@@ -159,15 +161,19 @@
         UITextField* ipText = [alertView textFieldAtIndex:0];
         ipAddress = ipText.text;
         
-        if (!connection->connectToSocket([ipAddress UTF8String], port, 100)) {
+        if (connection->connectToSocket([ipAddress UTF8String], port, 100)) {            
+            connection->sendString([connectionMade UTF8String]);
+            
+            NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+            [prefs setObject:ipAddress forKey:@"ipAddress"];
+            [prefs synchronize];
+        }
+        else
+        {
+            [alertView release];
             [self displayIpAlert];
         }
-        
-        connection->sendString([connectionMade UTF8String]);
-        
-        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-        [prefs setObject:ipAddress forKey:@"ipAddress"];
-        [prefs synchronize];
+
     }
 }
 
