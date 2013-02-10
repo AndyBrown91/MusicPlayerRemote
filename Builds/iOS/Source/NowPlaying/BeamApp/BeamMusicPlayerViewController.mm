@@ -162,7 +162,7 @@
     
     self.placeholderImageDelay = 0.5;
     
-    //self.volumeSlider.value = [self.dataSource providerVolume:self];
+    self.volumeSlider.value = 1.0;
 }
 
 - (void)viewDidUnload

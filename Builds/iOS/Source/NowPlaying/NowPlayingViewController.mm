@@ -30,7 +30,9 @@
     
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     connection = appDelegate.connection;
-
+    
+    [viewController setVolume:static_cast<CGFloat>(connection->getVolume())];
+    
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -54,29 +56,29 @@
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     
-#if TARGET_IPHONE_SIMULATOR
+//#if TARGET_IPHONE_SIMULATOR
     self.exampleProvider = appDelegate.provider;
     
     self.viewController.dataSource = self.exampleProvider;
     self.viewController.delegate = self.exampleProvider;
     [self.viewController reloadData];
     
-#else
-    BeamMPMusicPlayerProvider *mpMusicPlayerProvider = [BeamMPMusicPlayerProvider new];
-    mpMusicPlayerProvider.controller = self.viewController;
-    NSAssert(self.viewController.delegate == mpMusicPlayerProvider, @"setController: sets itself as delegate");
-    NSAssert(self.viewController.dataSource == mpMusicPlayerProvider, @"setController: sets itself as datasource");
+//#else
+//    BeamMPMusicPlayerProvider *mpMusicPlayerProvider = [BeamMPMusicPlayerProvider new];
+//    mpMusicPlayerProvider.controller = self.viewController;
+//    NSAssert(self.viewController.delegate == mpMusicPlayerProvider, @"setController: sets itself as delegate");
+//    NSAssert(self.viewController.dataSource == mpMusicPlayerProvider, @"setController: sets itself as datasource");
+//    
+//    mpMusicPlayerProvider.musicPlayer = [MPMusicPlayerController iPodMusicPlayer];
+//    
+//    MPMediaQuery *mq = [MPMediaQuery songsQuery];
+//    [MPMusicPlayerController.iPodMusicPlayer setQueueWithQuery:mq];
+//    mpMusicPlayerProvider.mediaItems = mq.items;
+//    self.exampleProvider = mpMusicPlayerProvider;
+//    //    mpMusicPlayerProvider.musicPlayer.nowPlayingItem = [mpMusicPlayerProvider.mediaItems objectAtIndex:mpMusicPlayerProvider.mediaItems.count-3];
+//    mpMusicPlayerProvider.musicPlayer.nowPlayingItem = [mpMusicPlayerProvider.mediaItems objectAtIndex:2];
     
-    mpMusicPlayerProvider.musicPlayer = [MPMusicPlayerController iPodMusicPlayer];
-    
-    MPMediaQuery *mq = [MPMediaQuery songsQuery];
-    [MPMusicPlayerController.iPodMusicPlayer setQueueWithQuery:mq];
-    mpMusicPlayerProvider.mediaItems = mq.items;
-    self.exampleProvider = mpMusicPlayerProvider;
-    //    mpMusicPlayerProvider.musicPlayer.nowPlayingItem = [mpMusicPlayerProvider.mediaItems objectAtIndex:mpMusicPlayerProvider.mediaItems.count-3];
-    mpMusicPlayerProvider.musicPlayer.nowPlayingItem = [mpMusicPlayerProvider.mediaItems objectAtIndex:2];
-    
-#endif
+//#endif
     
     self.viewController.shouldHideNextTrackButtonAtBoundary = YES;
     self.viewController.shouldHidePreviousTrackButtonAtBoundary = YES;

@@ -193,8 +193,6 @@
 		A140817F461888043B57234C /* juce_ZipFile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_ZipFile.cpp; path = ../../JuceLibraryCode/modules/juce_core/zip/juce_ZipFile.cpp; sourceTree = SOURCE_ROOT; };
 		A1A41884FEA350CADB167FC8 /* juce_TemporaryFile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_TemporaryFile.cpp; path = ../../JuceLibraryCode/modules/juce_core/files/juce_TemporaryFile.cpp; sourceTree = SOURCE_ROOT; };
 		A1C9765D169A0C1F00A70F0C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		A1D3C5AC1698CC6C001DD825 /* BeamMPMusicPlayerProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeamMPMusicPlayerProvider.h; path = BeamApp/BeamMPMusicPlayerProvider.h; sourceTree = "<group>"; };
-		A1D3C5AD1698CC6C001DD825 /* BeamMPMusicPlayerProvider.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BeamMPMusicPlayerProvider.mm; path = BeamApp/BeamMPMusicPlayerProvider.mm; sourceTree = "<group>"; };
 		A1D3C5AE1698CC6C001DD825 /* BeamMusicPlayerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = BeamMusicPlayerController.bundle; path = BeamApp/BeamMusicPlayerController.bundle; sourceTree = "<group>"; };
 		A1D3C5AF1698CC6C001DD825 /* BeamMusicPlayerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeamMusicPlayerDataSource.h; path = BeamApp/BeamMusicPlayerDataSource.h; sourceTree = "<group>"; };
 		A1D3C5B01698CC6C001DD825 /* BeamMusicPlayerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeamMusicPlayerDelegate.h; path = BeamApp/BeamMusicPlayerDelegate.h; sourceTree = "<group>"; };
@@ -607,8 +605,6 @@
 		A1F70A4916974625001078E5 /* BeamApp */ = {
 			isa = PBXGroup;
 			children = (
-				A1D3C5AC1698CC6C001DD825 /* BeamMPMusicPlayerProvider.h */,
-				A1D3C5AD1698CC6C001DD825 /* BeamMPMusicPlayerProvider.mm */,
 				A1D3C5AE1698CC6C001DD825 /* BeamMusicPlayerController.bundle */,
 				A1D3C5AF1698CC6C001DD825 /* BeamMusicPlayerDataSource.h */,
 				A1D3C5B01698CC6C001DD825 /* BeamMusicPlayerDelegate.h */,

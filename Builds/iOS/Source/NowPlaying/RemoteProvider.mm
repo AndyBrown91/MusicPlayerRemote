@@ -10,7 +10,6 @@
 
 @implementation RemoteProvider
 
-@synthesize musicPlayer;
 @synthesize controller;
 @synthesize receiving;
 //@synthesize mediaItems;
@@ -82,37 +81,18 @@
        connection->Play();
     }
 }
-//
-//-(BOOL)musicPlayerShouldStartPlaying:(BeamMusicPlayerViewController*)player
-//{
-//
-//}
 
 -(void)musicPlayerDidStopPlaying:(BeamMusicPlayerViewController*)player
 {
     if (!receiving)
     connection->Pause();
 }
-//
-//-(void)musicPlayerDidStopPlayingLastTrack:(BeamMusicPlayerViewController*)player
-//{
-//    NSLog(@"Did stop Final");
-//}
-//
-//-(BOOL)musicPlayerShouldStopPlaying:(BeamMusicPlayerViewController*)player
-//{
-//    NSLog(@"should stop");
-//}
 
 -(void)musicPlayer:(BeamMusicPlayerViewController*)player didSeekToPosition:(CGFloat)position
 {
     connection->setPosition((float)position);
 }
 
-//-(BOOL)musicPlayer:(BeamMusicPlayerViewController*)player shouldChangeTrack:(NSUInteger)track
-//{
-//    //
-//}
 
 -(NSInteger)musicPlayer:(BeamMusicPlayerViewController*)player didChangeTrack:(NSUInteger)track
 {
@@ -129,14 +109,5 @@
     connection->setVolume((float)volume); 
 }
 
-//-(void)musicPlayer:(BeamMusicPlayerViewController*)player didChangeShuffleState:(BOOL)shuffling
-//{
-//    
-//}
-//
-//-(void)musicPlayer:(BeamMusicPlayerViewController*)player didChangeRepeatMode:(MPMusicRepeatMode)repeatMode
-//{
-//    
-//}
 
 @end
