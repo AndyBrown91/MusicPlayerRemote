@@ -50,7 +50,10 @@ public:
 //    void setRemoteProvider(RemoteProvider provider);
     
 private:
-    String albumTitle, artist, song;
+    String albumTitle, artist;
+    char dummy1[4096];
+    String song;
+    char dummy2[4096];
     int tracksTotal, trackNum;
     double length, volume, position;
     

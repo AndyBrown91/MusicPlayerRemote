@@ -162,7 +162,7 @@
     
     self.placeholderImageDelay = 0.5;
     
-    self.volumeSlider.value = 1.0;
+//    self.volumeSlider.value = 1.0;
 }
 
 - (void)viewDidUnload
@@ -206,6 +206,7 @@
  * Updates the UI to match the current track by requesting the information from the datasource.
  */
 -(void)updateUIForCurrentTrack {
+    //RemoteProvider* dataSource = self.dataSource;
     
     self.artistNameLabel.text = [self.dataSource musicPlayer:self artistForTrack:self.currentTrack];
     self.trackTitleLabel.text = [self.dataSource musicPlayer:self titleForTrack:self.currentTrack];
@@ -332,7 +333,7 @@
         self.fastForwardButton.enabled = YES;
     }
     
-    if (self.currentTrack == 1) {
+    if (self.currentTrack <= 1) {
         self.rewindButton.enabled = NO;
     }
     else {
@@ -354,6 +355,7 @@
     self.currentTrackLength = [self.dataSource musicPlayer:self lengthForTrack:self.currentTrack];
     self.progressSlider.maximumValue = self.currentTrackLength;
     self.progressSlider.minimumValue = 0;
+    self.volumeSlider.value = [self.dataSource providerVolume:self];
     
     [self updateUIForCurrentTrack];
     [self updateSeekUI];

@@ -108,11 +108,13 @@
     [self registerDefaultsFromSettingsBundle];
     ipAddress = [[NSUserDefaults standardUserDefaults] stringForKey:@"ipAddress"];
     port = [[NSUserDefaults standardUserDefaults] integerForKey:@"portNum"];
-
-    if (!connection->connectToSocket([ipAddress UTF8String], port, 100)) {
+    if (!connection->isConnected())
+    {
+        if (!connection->connectToSocket([ipAddress UTF8String], port, 100)) {
         [self displayIpAlert];
+        }
+        connection->sendString([connectionMade UTF8String]);
     }
-    connection->sendString([connectionMade UTF8String]);
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -136,6 +138,7 @@
 
 - (void) displayIpAlert
 {
+    if (!connection->isConnected()){
    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ip Address Required" message:@"Please enter the Ip Address of the computer running MusicPlayer" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
     
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
@@ -145,6 +148,8 @@
     
     [alert addButtonWithTitle:@"Ok"];
     [alert show];
+        [alert release];
+    }
 //    [alert release];
 }
 
@@ -163,7 +168,7 @@
         
         if (connection->connectToSocket([ipAddress UTF8String], port, 100)) {            
             connection->sendString([connectionMade UTF8String]);
-            
+            [alertView release];
             NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
             [prefs setObject:ipAddress forKey:@"ipAddress"];
             [prefs synchronize];
@@ -171,6 +176,7 @@
         else
         {
             [alertView release];
+            if(!connection->isConnected())
             [self displayIpAlert];
         }
 
