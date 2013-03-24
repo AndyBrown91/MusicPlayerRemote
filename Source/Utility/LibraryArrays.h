@@ -13,6 +13,7 @@
 @property (strong, nonatomic) NSString* artistName;
 @property (strong, nonatomic) NSString* albumName;
 @property (assign, nonatomic) int libID;
+@property (assign, nonatomic) int ID;
 
 @end
 

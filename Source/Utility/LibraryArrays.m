@@ -11,6 +11,7 @@
 @implementation TrackItem
 
 @synthesize libID;
+@synthesize ID;
 @synthesize trackName;
 @synthesize artistName;
 @synthesize albumName;

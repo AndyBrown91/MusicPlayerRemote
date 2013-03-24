@@ -51,25 +51,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "0"
          filePath = "/Users/Andy/Desktop/RemoteStuff/Source/MainTableViewController.mm"
-         timestampString = "385739047.616977"
+         timestampString = "385842038.09948"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "152"
-         endingLineNumber = "152"
-         landmarkName = "-tableView:didSelectRowAtIndexPath:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "0"
-         filePath = "/Users/Andy/Desktop/RemoteStuff/Source/MainTableViewController.mm"
-         timestampString = "385739047.616977"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "154"
-         endingLineNumber = "154"
+         startingLineNumber = "157"
+         endingLineNumber = "157"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>

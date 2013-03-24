@@ -128,28 +128,38 @@
         if (self.type == @"Playlist") {
             NSScanner* scanner = [NSScanner scannerWithString:selectedRow];
             [scanner scanUpToString:@" -" intoString:&selectedRow];
+            playString = [NSString stringWithFormat:@"PlaylistTrack %@ ID=", self.title];
         }
         
         for (int i = 0; i < [libraryArrays.completeLibrary count]; i++)
         {
             TrackItem* checkSong = [libraryArrays.completeLibrary objectAtIndex:i];
             
-            if (checkSong.trackName == selectedRow)
+            if ([checkSong.trackName isEqualToString:selectedRow])
             {
-                NSString* trackID = [NSString stringWithFormat:@"%d", checkSong.libID]; 
+                NSString* trackID;
+                if (self.type == @"Playlist")
+                    trackID = [NSString stringWithFormat:@"%d", checkSong.ID];
+                else
+                    trackID = [NSString stringWithFormat:@"%d", checkSong.libID];
                 sendString = [playString stringByAppendingString:trackID];
             }
         }
-        //NSString* sendString = [playString stringByAppendingString:selectedRow];
-        
+
         app.connection->sendString([sendString UTF8String]);
         NSLog(@"%@", sendString);
         [self showNowPlaying];
     }
     else
     {   
-        if (self.detailViewController == nil) 
+        if (self.detailViewController == nil)
+        {
             self.detailViewController = [[MainTableViewController alloc] initWithNibName:@"FirstViewController" bundle:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self.detailViewController
+                                                     selector:@selector(receiveNotification:) 
+                                                         name:nil
+                                                       object:nil];
+        }
         
         self.detailViewController.title = selectedRow;
         //    }
@@ -192,6 +202,8 @@
     app.window.rootViewController = app.nowPlayingController;
 }
 
+
+
 - (void)receiveNotification:(NSNotification*) notification
 {
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -223,16 +235,34 @@
     
     if ([[notification name] isEqualToString:@"ArrayLoaded"])
     {
+        //Makes sure all objects of type MainTableViewController can recieve the same notification but they will only do something if the correct array is coming in
         NSDictionary* userInfo = notification.userInfo;
-        NSMutableArray* incomingArray = [userInfo objectForKey:@"someKey"];
+        NSArray* keyArray = [userInfo allKeys];
+        NSString* key = [keyArray objectAtIndex:0];
+
+        NSMutableArray* incomingArray = [userInfo objectForKey:key];
         
-//        self.detailViewController = [[MainTableViewController alloc] initWithNibName:@"FirstViewController" bundle:nil];
-    
-        self.detailViewController.tableData = [NSMutableArray new];
-        self.detailViewController.libraryArrays = self.libraryArrays;
-        [self.detailViewController.tableData setArray:incomingArray];
-        [self.navigationController pushViewController:self.detailViewController animated:YES];
+        if (key == @"artistAlbums" && self.type == @"Artists")
+        {
+            [self displayDetailView:incomingArray];
+        }
+        else if (key == @"albumTracks" && self.type == @"Albums")
+        {
+            [self displayDetailView:incomingArray];
+        }
+        else if (key == @"playlistTracks" && self.type == @"Playlists")
+        {
+            [self displayDetailView:incomingArray];
+        }
     }
+}
+
+- (void) displayDetailView:(NSMutableArray*) incomingArray
+{
+    self.detailViewController.tableData = [NSMutableArray new];
+    self.detailViewController.libraryArrays = self.libraryArrays;
+    [self.detailViewController.tableData setArray:incomingArray];
+    [self.navigationController pushViewController:self.detailViewController animated:YES];
 }
 
 @end

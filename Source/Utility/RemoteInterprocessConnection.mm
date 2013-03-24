@@ -146,7 +146,7 @@ void RemoteInterprocessConnection::messageReceived (const MemoryBlock& message)
         }
         
     }
-    DBG("Message received " + message.toString());
+    //DBG("Message received " + message.toString());
 }
 
 void RemoteInterprocessConnection::sendString(String incomingMessage)
@@ -236,6 +236,7 @@ void RemoteInterprocessConnection::populateArrays()
                 currentTrack.trackName = (__bridge NSString*) (library.getChild(i).getProperty("Song").toString().toCFString());
                 currentTrack.albumName = (__bridge NSString*) (library.getChild(i).getProperty("Album").toString().toCFString());
                 currentTrack.libID = (int) (library.getChild(i).getProperty("LibID"));
+                currentTrack.ID = (int) (library.getChild(i).getProperty("ID"));
                 [libraryArrays.completeLibrary addObject:currentTrack];
             }
             
@@ -256,11 +257,7 @@ void RemoteInterprocessConnection::populateArrays()
                     [libraryArrays.albumsArray addObject:currentTrack.albumName];
                 }
                 
-                //Maybe remove...
-                //NSInteger songIndex = [libraryArrays.songsArray indexOfObject:currentTrack.trackName];
-                //if(NSNotFound == songIndex) {
                 [libraryArrays.songsArray addObject:currentTrack.trackName];
-                //}
             }
             
             NSLog(@"First artist = %@", [libraryArrays.artistsArray objectAtIndex:0]);
@@ -277,6 +274,7 @@ void RemoteInterprocessConnection::populateArrays()
                 }
             }
             
+            [libraryArrays.artistsArray sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
             [libraryArrays.albumsArray sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
             [libraryArrays.songsArray sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
             
@@ -311,13 +309,12 @@ void RemoteInterprocessConnection::getPlaylistTracks(NSString* playlist)
                 ValueTree currentTrack = trackInfo.getChild(i);
                 
                 NSString* details = (__bridge NSString*)((currentTrack.getProperty("Song").toString()+" - "+currentTrack.getProperty("Artist").toString()).toCFString());
-                NSLog(@"Details = %@", details);
                 [playlistTracks addObject:details];
             }
         }
     }
     
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:playlistTracks forKey:@"someKey"];
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:playlistTracks forKey:@"playlistTracks"];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ArrayLoaded" 
                                                         object:nil
@@ -332,16 +329,16 @@ void RemoteInterprocessConnection::getArtistAlbums (NSString *artist)
     {
         TrackItem* currentTrack = [libraryArrays.completeLibrary objectAtIndex:i];
         
-        if (currentTrack.artistName == artist)
+        if ([currentTrack.artistName isEqualToString:artist])
         {
-            //NSInteger albumIndex = [artistAlbumsArray indexOfObject:currentTrack.albumName];
-            //if(NSNotFound == albumIndex) {
+            NSInteger albumIndex = [artistAlbumsArray indexOfObject:currentTrack.albumName];
+            if(NSNotFound == albumIndex) {
                 [artistAlbumsArray addObject:currentTrack.albumName];
-            //}
+            }
         }
     }
     
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:artistAlbumsArray forKey:@"someKey"];
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:artistAlbumsArray forKey:@"artistAlbums"];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ArrayLoaded" 
                                                         object:nil
@@ -356,16 +353,13 @@ void RemoteInterprocessConnection::getAlbumTracks(NSString* album)
     {
         TrackItem* currentTrack = [libraryArrays.completeLibrary objectAtIndex:i];
         
-        if (currentTrack.albumName == album)
+        if ([currentTrack.albumName isEqualToString:album])
         {
-            //NSInteger trackIndex = [albumTracks indexOfObject:currentTrack.trackName];
-            //if(NSNotFound == trackIndex) {
-                [albumTracks addObject:currentTrack.trackName];
-            //}
+            [albumTracks addObject:currentTrack.trackName];
         }
     }
     
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:albumTracks forKey:@"someKey"];
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:albumTracks forKey:@"albumTracks"];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ArrayLoaded" 
                                                         object:nil

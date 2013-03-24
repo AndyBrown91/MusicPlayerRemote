@@ -23,6 +23,7 @@
 
 @property (strong, nonatomic) NSString* type;
 
-- (void)showNowPlaying;
-- (void)receiveNotification:(NSNotification*) notification;
+- (void) showNowPlaying;
+- (void) receiveNotification:(NSNotification*) notification;
+- (void) displayDetailView:(NSMutableArray*) incomingArray;
 @end

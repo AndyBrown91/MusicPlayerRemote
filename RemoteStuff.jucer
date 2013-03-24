@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="L6Gxtc" name="RemoteStuff" projectType="guiapp" version="1.0.0"
+              bundleIdentifier="com.yourcompany.RemoteStuff" jucerVersion="3.0.0">
+  <MAINGROUP id="FYTA8x" name="RemoteStuff">
+    <GROUP id="{F04779D2-6885-14CD-9D55-F8846FB76983}" name="Source">
+      <FILE id="XgzM6r" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+    </GROUP>
+  </MAINGROUP>
+  <MODULES>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_audio" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="1"/>
+  </MODULES>
+  <EXPORTFORMATS>
+    <XCODE_IPHONE targetFolder="Builds/iOS" juceFolder="../Programming/juce/modules">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" iosCompatibility="4.0" isDebug="1" optimisation="1"
+                       targetName="RemoteStuff"/>
+        <CONFIGURATION name="Release" iosCompatibility="default" isDebug="0" optimisation="2"
+                       targetName="RemoteStuff"/>
+      </CONFIGURATIONS>
+    </XCODE_IPHONE>
+  </EXPORTFORMATS>
+  <JUCEOPTIONS/>
+</JUCERPROJECT>
