@@ -259,9 +259,7 @@ void RemoteInterprocessConnection::populateArrays()
                 
                 [libraryArrays.songsArray addObject:currentTrack.trackName];
             }
-            
-            NSLog(@"First artist = %@", [libraryArrays.artistsArray objectAtIndex:0]);
-            
+
             libraryArrays.playlistsArray = [NSMutableArray new];
             
             for (int i = 0; i < playlists.getNumChildren(); i++) {
@@ -293,11 +291,8 @@ LibraryArrays* RemoteInterprocessConnection::getArrays()
 
 void RemoteInterprocessConnection::getPlaylistTracks(NSString* playlist)
 {
-    NSLog(@"Tracks %@" , playlist);
-    
     playlistTracks = [NSMutableArray new];
     String playlistToFind = [playlist UTF8String];
-    DBG("To find = " << playlistToFind);
     ValueTree currentPlaylist = playlists.getChildWithProperty("Name", playlistToFind);
     
     if (currentPlaylist.isValid()) 

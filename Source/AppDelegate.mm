@@ -141,7 +141,7 @@
     
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:playlistsWrapper, artistsWrapper, albumsWrapper, songsWrapper, nil];
-
+    
     //Now playing button callbacks
     self.nowPlayingController.backBlock = ^{
         self.window.rootViewController = self.tabBarController;
@@ -152,7 +152,7 @@
     
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
- 
+    
     return YES;
 }
 
@@ -177,6 +177,8 @@
     /*
      Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
      */
+    
+    [self registerDefaultsFromSettingsBundle];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -193,24 +195,41 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+    
+    delete connection;
 }
 
 /*
-// Optional UITabBarControllerDelegate method.
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
-{
-}
-*/
+ // Optional UITabBarControllerDelegate method.
+ - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+ {
+ }
+ */
 
 /*
-// Optional UITabBarControllerDelegate method.
-- (void)tabBarController:(UITabBarController *)tabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed
-{
-}
-*/
+ // Optional UITabBarControllerDelegate method.
+ - (void)tabBarController:(UITabBarController *)tabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed
+ {
+ }
+ */
 
 - (void) displayIpAlert
 {
+//    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"IP Address Required" message:@"Please enter the IP address of the computer running MusicPlayer\n\n\n" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+//    UITextField *ipText;
+//    ipText = [[UITextField alloc] init];
+//    [ipText setBackgroundColor:[UIColor whiteColor]];
+//    ipText.borderStyle = UITextBorderStyleLine;
+//    ipText.frame = CGRectMake(30, 95, 220, 30);
+//    ipText.font = [UIFont fontWithName:@"ArialMT" size:20];
+//    ipText.placeholder = @"Ip Address";
+//    ipText.tag = 123;
+//    ipText.textAlignment = UITextAlignmentCenter;
+//    ipText.keyboardAppearance = UIKeyboardAppearanceAlert;
+//    ipText.text = self.ipAddress;
+//    [alert addSubview:ipText];
+    
+// iOS 5.0 only    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ip Address Required" message:@"Please enter the Ip Address of the computer running MusicPlayer" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
     
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
@@ -232,6 +251,7 @@
     else if([title isEqualToString:@"Ok"])
     {
         UITextField* ipText = [alertView textFieldAtIndex:0];
+//        UITextField* ipText = (UITextField*)[alertView viewWithTag:123];
         self.ipAddress = ipText.text;
         
         if (!self.connection->connectToSocket([self.ipAddress UTF8String], self.port, 100)) {

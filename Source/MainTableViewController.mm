@@ -62,14 +62,15 @@
     else if (self.title == @"Songs")
     {
         [self.tableData performSelectorOnMainThread:@selector(setArray:) withObject:libraryArrays.songsArray waitUntilDone:NO];
+        
     }
-    
-    [currentTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     
     [super viewWillAppear:animated];
     
-    NSLog(@"Title = %@", self.title);
-    NSLog(@"Type = %@", self.type);
+    [currentTable reloadData];
+    
+//    NSLog(@"Title = %@", self.title);
+//    NSLog(@"Type = %@", self.type);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -114,6 +115,25 @@
     return cell;
 }
 
+- (void)showNowPlaying
+{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    //[app.nav pushViewController:app.nowPlayingController animated:YES];
+    [app.nowPlayingController setVolume:static_cast<CGFloat>(app.connection->getVolume())];
+    
+    app.nowPlayingController.shouldHideNextTrackButtonAtBoundary = YES;
+    app.nowPlayingController.shouldHidePreviousTrackButtonAtBoundary = YES;
+    
+    app.nowPlayingController.dataSource = app.remoteProvider;
+    app.nowPlayingController.delegate = app.remoteProvider;
+    
+    [app.nowPlayingController performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+    //[app.nowPlayingController adjustPlayButtonState];
+    [app.nowPlayingController performSelectorOnMainThread:@selector(adjustPlayButtonState) withObject:nil waitUntilDone:NO];
+    
+    app.window.rootViewController = app.nowPlayingController;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -142,6 +162,7 @@
                     trackID = [NSString stringWithFormat:@"%d", checkSong.ID];
                 else
                     trackID = [NSString stringWithFormat:@"%d", checkSong.libID];
+                
                 sendString = [playString stringByAppendingString:trackID];
             }
         }
@@ -157,12 +178,11 @@
             self.detailViewController = [[MainTableViewController alloc] initWithNibName:@"FirstViewController" bundle:nil];
             [[NSNotificationCenter defaultCenter] addObserver:self.detailViewController
                                                      selector:@selector(receiveNotification:) 
-                                                         name:nil
+                                                         name:@"ArrayLoaded"
                                                        object:nil];
         }
         
         self.detailViewController.title = selectedRow;
-        //    }
         
         if (self.type == @"Artists")
         {
@@ -182,27 +202,6 @@
         }
     }
 }
-
-- (void)showNowPlaying
-{
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    //[app.nav pushViewController:app.nowPlayingController animated:YES];
-    [app.nowPlayingController setVolume:static_cast<CGFloat>(app.connection->getVolume())];
-    
-    app.nowPlayingController.shouldHideNextTrackButtonAtBoundary = YES;
-    app.nowPlayingController.shouldHidePreviousTrackButtonAtBoundary = YES;
-    
-    app.nowPlayingController.dataSource = app.remoteProvider;
-    app.nowPlayingController.delegate = app.remoteProvider;
-    
-    [app.nowPlayingController performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-    //[app.nowPlayingController adjustPlayButtonState];
-    [app.nowPlayingController performSelectorOnMainThread:@selector(adjustPlayButtonState) withObject:nil waitUntilDone:NO];
-    
-    app.window.rootViewController = app.nowPlayingController;
-}
-
-
 
 - (void)receiveNotification:(NSNotification*) notification
 {
@@ -233,7 +232,7 @@
         [currentTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     }
     
-    if ([[notification name] isEqualToString:@"ArrayLoaded"])
+    else if ([[notification name] isEqualToString:@"ArrayLoaded"])
     {
         //Makes sure all objects of type MainTableViewController can recieve the same notification but they will only do something if the correct array is coming in
         NSDictionary* userInfo = notification.userInfo;
@@ -262,7 +261,10 @@
     self.detailViewController.tableData = [NSMutableArray new];
     self.detailViewController.libraryArrays = self.libraryArrays;
     [self.detailViewController.tableData setArray:incomingArray];
-    [self.navigationController pushViewController:self.detailViewController animated:YES];
+    //Makes sure a nil view controller is never pushed
+    if (self.detailViewController != nil) {
+        [self.navigationController pushViewController:self.detailViewController animated:YES];
+    }
 }
 
 @end
