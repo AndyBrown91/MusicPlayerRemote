@@ -23,6 +23,7 @@ RemoteInterprocessConnection::~RemoteInterprocessConnection()
 
 void RemoteInterprocessConnection::connectionMade()
 {
+    DBG("Connection # - connection made");
     //    String connectionMade ("ConnectionMade");
     //    MemoryBlock messageData (connectionMade.toUTF8(), (size_t) connectionMade.getNumBytesAsUTF8());
     //    sendMessage(messageData);

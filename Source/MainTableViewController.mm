@@ -8,8 +8,6 @@
 
 #import "MainTableViewController.h"
 
-#import "DetailViewController.h"
-
 @implementation MainTableViewController
 
 @synthesize detailViewController = _detailViewController;
@@ -48,18 +46,18 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    if (self.title == @"Playlists") {
+    if ([self.title isEqual: @"Playlists"]) {
         [self.tableData performSelectorOnMainThread:@selector(setArray:) withObject:libraryArrays.playlistsArray waitUntilDone:NO];
     }
-    else if (self.title == @"Artists")
+    else if ([self.title isEqual: @"Artists"])
     {
         [self.tableData performSelectorOnMainThread:@selector(setArray:) withObject:libraryArrays.artistsArray waitUntilDone:NO];
     }
-    else if (self.title == @"Albums")
+    else if ([self.title isEqual: @"Albums"])
     {
         [self.tableData performSelectorOnMainThread:@selector(setArray:) withObject:libraryArrays.albumsArray waitUntilDone:NO];
     }
-    else if (self.title == @"Songs")
+    else if ([self.title isEqual: @"Songs"])
     {
         [self.tableData performSelectorOnMainThread:@selector(setArray:) withObject:libraryArrays.songsArray waitUntilDone:NO];
         
@@ -117,6 +115,8 @@
 
 - (void)showNowPlaying
 {
+    [self.navigationController popToRootViewControllerAnimated:TRUE];
+    
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     //[app.nav pushViewController:app.nowPlayingController animated:YES];
     [app.nowPlayingController setVolume:static_cast<CGFloat>(app.connection->getVolume())];
@@ -140,12 +140,12 @@
     
     NSString* selectedRow = [self.tableData objectAtIndex:[indexPath row]];
     
-    if (self.type == @"Tracks" || self.type == @"Playlist")
+    if ([self.type isEqual: @"Tracks"] || [self.type isEqual: @"Playlist"])
     {
         NSString* playString = @"PlayTrack ";
         NSString* sendString;
         
-        if (self.type == @"Playlist") {
+        if ([self.type isEqual: @"Playlist"]) {
             NSScanner* scanner = [NSScanner scannerWithString:selectedRow];
             [scanner scanUpToString:@" -" intoString:&selectedRow];
             playString = [NSString stringWithFormat:@"PlaylistTrack %@ ID=", self.title];
@@ -158,7 +158,7 @@
             if ([checkSong.trackName isEqualToString:selectedRow])
             {
                 NSString* trackID;
-                if (self.type == @"Playlist")
+                if ([self.type isEqual: @"Playlist"])
                     trackID = [NSString stringWithFormat:@"%d", checkSong.ID];
                 else
                     trackID = [NSString stringWithFormat:@"%d", checkSong.libID];
@@ -173,29 +173,29 @@
     }
     else
     {   
-        if (self.detailViewController == nil)
-        {
+        //if (self.detailViewController == nil)
+        //{
             self.detailViewController = [[MainTableViewController alloc] initWithNibName:@"FirstViewController" bundle:nil];
             [[NSNotificationCenter defaultCenter] addObserver:self.detailViewController
                                                      selector:@selector(receiveNotification:) 
                                                          name:@"ArrayLoaded"
                                                        object:nil];
-        }
+        //}
         
         self.detailViewController.title = selectedRow;
         
-        if (self.type == @"Artists")
+        if ([self.type isEqual: @"Artists"])
         {
             self.detailViewController.type = @"Albums";
             app.connection->getArtistAlbums(selectedRow);
         }
-        else if (self.type == @"Albums")
+        else if ([self.type isEqual: @"Albums"])
         {
             self.detailViewController.type = @"Tracks";
             app.connection->getAlbumTracks(selectedRow);
         }
         
-        else if (self.type == @"Playlists")
+        else if ([self.type isEqual: @"Playlists"])
         {
             self.detailViewController.type = @"Playlist";
             app.connection->getPlaylistTracks(selectedRow);
@@ -212,19 +212,19 @@
     {
         self.tableData = [NSMutableArray new];
         
-        if (self.title == @"Playlists") {
+        if ([self.title isEqual: @"Playlists"]) {
             [self.tableData performSelectorOnMainThread:@selector(setArray:) withObject:libraryArrays.playlistsArray waitUntilDone:NO];
         }
-        else if (self.title == @"Artists")
+        else if ([self.title isEqual: @"Artists"])
         {
             NSLog(@"Loading artist info on %@ of type %@", self.title, self.type);
             [self.tableData performSelectorOnMainThread:@selector(setArray:) withObject:libraryArrays.artistsArray waitUntilDone:NO];
         }
-        else if (self.title == @"Albums")
+        else if ([self.title isEqual: @"Albums"])
         {
             [self.tableData performSelectorOnMainThread:@selector(setArray:) withObject:libraryArrays.albumsArray waitUntilDone:NO];
         }
-        else if (self.title == @"Songs")
+        else if ([self.title isEqual: @"Songs"])
         {
             [self.tableData performSelectorOnMainThread:@selector(setArray:) withObject:libraryArrays.songsArray waitUntilDone:NO];
         }
@@ -241,15 +241,15 @@
 
         NSMutableArray* incomingArray = [userInfo objectForKey:key];
         
-        if (key == @"artistAlbums" && self.type == @"Artists")
+        if ([key isEqual: @"artistAlbums"] && [self.type isEqual: @"Artists"])
         {
             [self displayDetailView:incomingArray];
         }
-        else if (key == @"albumTracks" && self.type == @"Albums")
+        else if ([key isEqual: @"albumTracks"] && [self.type isEqual: @"Albums"])
         {
             [self displayDetailView:incomingArray];
         }
-        else if (key == @"playlistTracks" && self.type == @"Playlists")
+        else if ([key isEqual: @"playlistTracks"] && [self.type isEqual: @"Playlists"])
         {
             [self displayDetailView:incomingArray];
         }

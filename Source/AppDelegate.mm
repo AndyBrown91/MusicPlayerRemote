@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 
 #import "MainTableViewController.h"
-#import "SecondViewController.h"
 
 @implementation AppDelegate
 
@@ -77,9 +76,17 @@
     self.port = [[NSUserDefaults standardUserDefaults] integerForKey:@"portNum"];
     
     self.connection = new RemoteInterprocessConnection();
-    //connection->connectToSocket("192.168.1.75", self.port, 100);
+
     if (!self.connection->connectToSocket([self.ipAddress UTF8String], self.port, 100)) {
-        [self displayIpAlert];
+        if (!self.connection->isConnected())
+        {
+            NSTimer* timer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                      target:self
+                                                    selector:@selector(remoteConnectTimeout)
+                                                    userInfo:nil
+                                                     repeats:NO];
+            [timer fire];
+        }
     }
     
     self.remoteProvider = [RemoteProvider new];
@@ -140,6 +147,7 @@
     [songsWrapper.navigationBar setBarStyle:UIBarStyleBlackOpaque];
     
     self.tabBarController = [[UITabBarController alloc] init];
+    self.tabBarController.delegate = self;
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:playlistsWrapper, artistsWrapper, albumsWrapper, songsWrapper, nil];
     
     //Now playing button callbacks
@@ -162,6 +170,7 @@
      Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
      Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
      */
+    
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -170,6 +179,8 @@
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
+    
+    connection->disconnect();
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -186,6 +197,26 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+//    if (self.connection != nullptr)
+//    {
+//        if (!self.connection->isConnected())
+//        {
+//            if (!self.connection->connectToSocket([self.ipAddress UTF8String], self.port, 100)) {
+//                [self displayIpAlert];
+//            }
+//        }
+//    }
+}
+
+- (void)remoteConnectTimeout
+{
+    if (!self.connection->isConnected())
+    {
+        if (!self.connection->connectToSocket([self.ipAddress UTF8String], self.port, 100)) {
+            if (!self.connection->isConnected())
+                [self displayIpAlert];
+        }
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -199,19 +230,25 @@
     delete connection;
 }
 
-/*
+
  // Optional UITabBarControllerDelegate method.
  - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
  {
+     for (int i = 0; i < [self.tabBarController.toolbarItems count]; i++)
+     {
+         UINavigationController* current = self.tabBarController.toolbarItems[i];
+         [current popToRootViewControllerAnimated:TRUE];
+     }
  }
- */
+ 
 
-/*
+
  // Optional UITabBarControllerDelegate method.
  - (void)tabBarController:(UITabBarController *)tabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed
  {
+     
  }
- */
+ 
 
 - (void) displayIpAlert
 {
@@ -251,12 +288,22 @@
     else if([title isEqualToString:@"Ok"])
     {
         UITextField* ipText = [alertView textFieldAtIndex:0];
+//iOS 4
 //        UITextField* ipText = (UITextField*)[alertView viewWithTag:123];
-        self.ipAddress = ipText.text;
+        self.ipAddress = [ipText.text stringByReplacingOccurrencesOfString:@" " withString:@""];
         
         if (!self.connection->connectToSocket([self.ipAddress UTF8String], self.port, 100)) {
-            [self displayIpAlert];
+            if (!self.connection->isConnected())
+            {
+                NSTimer* timer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                 target:self
+                                               selector:@selector(remoteConnectTimeout)
+                                               userInfo:nil
+                                                repeats:NO];
+                [timer fire];
+            }
         }
+
         
         NSString* connectionMade = @"ConnectionMade";
         self.connection->sendString([connectionMade UTF8String]);

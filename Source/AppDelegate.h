@@ -12,7 +12,7 @@
 #import "BeamMusicPlayerViewController.h"
 #import "RemoteProvider.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate, UITabBarControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
