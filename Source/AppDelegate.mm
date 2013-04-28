@@ -234,9 +234,9 @@
  // Optional UITabBarControllerDelegate method.
  - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
  {
-     for (int i = 0; i < [self.tabBarController.toolbarItems count]; i++)
+     for (int i = 0; i < [self.tabBarController.viewControllers count]; i++)
      {
-         UINavigationController* current = self.tabBarController.toolbarItems[i];
+         UINavigationController* current = self.tabBarController.viewControllers[i];
          [current popToRootViewControllerAnimated:TRUE];
      }
  }

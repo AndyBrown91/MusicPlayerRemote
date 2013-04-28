@@ -263,7 +263,8 @@
     [self.detailViewController.tableData setArray:incomingArray];
     //Makes sure a nil view controller is never pushed
     if (self.detailViewController != nil) {
-        [self.navigationController pushViewController:self.detailViewController animated:YES];
+        if(!(self.navigationController.visibleViewController == self.detailViewController))
+            [self.navigationController pushViewController:self.detailViewController animated:YES];
     }
 }
 
