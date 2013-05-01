@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+/** TrackItem information class, struct like container for the important information about each track */
 @interface TrackItem : NSObject
 
 @property (strong, nonatomic) NSString* trackName;
@@ -17,7 +18,7 @@
 
 @end
 
-
+/** Struct like container for the Arrays used throughout the application, since they don't change unless the desktop application is updated, they are not deleted until the application closes */
 @interface LibraryArrays : NSObject
 
 @property (strong, nonatomic) NSMutableArray* completeLibrary;

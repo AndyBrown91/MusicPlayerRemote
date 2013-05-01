@@ -64,7 +64,7 @@
     [defs synchronize];
 }
 
-
+/** Initialises the application, loads default values, makes the connection, creates tab bar controller and navigation controllers contained within. Sets the NSNotificationCenter callback for each view controller*/
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -232,6 +232,7 @@
 
 
  // Optional UITabBarControllerDelegate method.
+/** Pops all view controllers when changing to a different tab */
  - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
  {
      for (int i = 0; i < [self.tabBarController.viewControllers count]; i++)
