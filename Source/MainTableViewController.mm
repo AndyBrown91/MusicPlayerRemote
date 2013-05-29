@@ -155,6 +155,8 @@
         {
             TrackItem* checkSong = [libraryArrays.completeLibrary objectAtIndex:i];
             
+            
+            //Need to check against something else...
             if ([checkSong.trackName isEqualToString:selectedRow])
             {
                 NSString* trackID;

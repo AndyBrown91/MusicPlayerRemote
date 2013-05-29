@@ -31,7 +31,8 @@ void RemoteInterprocessConnection::connectionLost()
     DBG("Connection # - connection lost");
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
-    [appDelegate performSelectorOnMainThread:@selector(displayIpAlert) withObject:nil waitUntilDone:YES];
+    if (appDelegate.enteringBackground == FALSE)
+        [appDelegate performSelectorOnMainThread:@selector(displayIpAlert) withObject:nil waitUntilDone:YES];
     
     //remoteNumConnections--;
 }

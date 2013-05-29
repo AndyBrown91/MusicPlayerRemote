@@ -16,6 +16,7 @@
 @synthesize tabBarController = _tabBarController;
 @synthesize port = _port;
 @synthesize ipAddress = _ipAddress;
+@synthesize enteringBackground = _enteringBackground;
 
 @synthesize connection;
 @synthesize nowPlayingController = _nowPlayingController;
@@ -70,6 +71,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     [self registerDefaultsFromSettingsBundle];
+    
+    self.enteringBackground = FALSE;
     
     //Connection/nowplaying
     self.ipAddress = [[NSUserDefaults standardUserDefaults] stringForKey:@"ipAddress"];
@@ -180,6 +183,8 @@
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
     
+    self.enteringBackground = TRUE;
+    
     connection->disconnect();
 }
 
@@ -190,6 +195,20 @@
      */
     
     [self registerDefaultsFromSettingsBundle];
+    
+    if (!self.connection->connectToSocket([self.ipAddress UTF8String], self.port, 100)) {
+        if (!self.connection->isConnected())
+        {
+            NSTimer* timer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                              target:self
+                                                            selector:@selector(remoteConnectTimeout)
+                                                            userInfo:nil
+                                                             repeats:NO];
+            [timer fire];
+        }
+    }
+    
+    self.enteringBackground = FALSE;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

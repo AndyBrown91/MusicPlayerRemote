@@ -27,6 +27,9 @@
 /** The port to connect to 8888 */
 @property (assign, nonatomic) int port;
 
+/** Whether the app is going into the background */
+@property (assign, nonatomic) BOOL enteringBackground;
+
 /** The connection to the desktop application */
 @property (assign) RemoteInterprocessConnection* connection;
 /** The now playing view controller */
